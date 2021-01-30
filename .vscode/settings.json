@@ -1,78 +1,121 @@
 {
-    "window.zoomLevel": 0,
+  "window.zoomLevel": 0,
 
+  "editor.suggestSelection": "first",
+  "editor.tabCompletion": "on",
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+  "editor.wordWrap": "on",
+
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  //"files.autoGuessEncoding": true,
+
+  "extensions.autoUpdate": true,
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "gitlens.advanced.fileHistoryFollowsRenames": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "python.languageServer": "Microsoft",
+  "vetur.format.defaultFormatter.html": "none",
+  "vetur.format.defaultFormatter.ts": "none",
+
+  // code runner
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.runInTerminal": true,
+  "code-runner.executorMap": {
+    "cpp": "cd $dir && g++ -O2 -std=c++17 $fileName && ./a.out"
+  },
+
+  // C, C++
+  "C_Cpp.updateChannel": "Insiders",
+  "C_Cpp.clang_format_style": "{BasedOnStyle: Google, BreakBeforeBraces: Stroustrup, IndentWidth: 4, ColumnLimit: 0, AccessModifierOffset: -4, IndentCaseLabels: false}",
+
+  // Haskell
+  "languageServerHaskell.hieExecutablePath": "~/.local/bin/hie",
+
+  // Flutter (Dart)
+  "dart.flutterSdkPath": "/Users/uesho/develop/flutter",
+
+  // Go
+  "go.gopath": "/Users/uesho/go",
+  "go.useLanguageServer": true,
+  "[go.mod]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "gopls": {
+    // Add parameter placeholders when completing a function.
+    "usePlaceholders": true,
+    // If true, enable additional analyses with staticcheck.
+    // Warning: This will significantly increase memory usage.
+    "staticcheck": false
+  },
+  "go.toolsEnvVars": {
+    "GO111MODULE": "auto"
+  },
+
+  // 言語ごとの設定
+  "[c]": {
     "editor.tabSize": 4,
-    "editor.suggestSelection": "first",
-    "editor.tabCompletion": "on",
-    "editor.formatOnType": true,
-    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  },
+  "[cpp]": {
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true
+  },
+  "[ruby]": {
+    "editor.tabSize": 2
+  },
+  "[go]": {
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "editor.snippetSuggestions": "none"
+  },
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    // "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.tabSize": 2,
     "editor.wordWrap": "on",
+    "editor.quickSuggestions": false
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 
-    "files.eol": "\n",
-    "files.trimTrailingWhitespace": true,
-    "files.autoGuessEncoding": true,
-
-    "extensions.autoUpdate": true,
-
-
-    // code runner
-    "code-runner.clearPreviousOutput": true,
-    "code-runner.runInTerminal": true,
-    "code-runner.executorMap": {
-        "cpp": "cd $dir && g++ -O2 -std=c++17 $fileName && ./a.out"
-    },
-
-    // C, C++
-    "C_Cpp.updateChannel": "Insiders",
-    "C_Cpp.clang_format_style": "{BasedOnStyle: Google, BreakBeforeBraces: Stroustrup, IndentWidth: 4, ColumnLimit: 0, AccessModifierOffset: -4, IndentCaseLabels: false}",
-
-    // Haskell
-    "languageServerHaskell.hieExecutablePath": "~/.local/bin/hie",
-
-    // Flutter (Dart)
-    "dart.flutterSdkPath": "/Users/uesho/develop/flutter",
-
-    // Go
-    "go.gopath": "/Users/uesho/go",
-    "go.useLanguageServer": true,
-    "[go.mod]": {
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true,
-        },
-    },
-    "gopls": {
-        // Add parameter placeholders when completing a function.
-        "usePlaceholders": true,
-        // If true, enable additional analyses with staticcheck.
-        // Warning: This will significantly increase memory usage.
-        "staticcheck": false,
-    },
-    "go.toolsEnvVars": {
-        "GO111MODULE": "auto",
-    },
-
-    // 言語ごとの設定
-    "[c]": {
-        "editor.formatOnSave": true
-    },
-    "[cpp]": {
-        "editor.formatOnSave": true,
-    },
-    "[ruby]":{
-        "editor.tabSize": 2,
-    },
-    "[go]":{
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        },
-        "editor.snippetSuggestions": "none",
-    },
-    "[markdown]":{
-        "editor.tabSize": 2,
-        "editor.wordWrap": "on",
-        "editor.quickSuggestions": false
-    },
-    "terminal.integrated.shell.osx": "/bin/zsh",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
