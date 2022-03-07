@@ -1,121 +1,269 @@
 {
-  "window.zoomLevel": 0,
-
-  "editor.suggestSelection": "first",
-  "editor.tabCompletion": "on",
-  "editor.formatOnType": true,
-  "editor.formatOnPaste": true,
-  "editor.wordWrap": "on",
-
-  "files.eol": "\n",
-  "files.trimTrailingWhitespace": true,
-  //"files.autoGuessEncoding": true,
-
-  "extensions.autoUpdate": true,
-  "terminal.integrated.shell.osx": "/bin/zsh",
-  "gitlens.advanced.fileHistoryFollowsRenames": true,
-  "liveServer.settings.donotShowInfoMsg": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "python.languageServer": "Microsoft",
-  "vetur.format.defaultFormatter.html": "none",
-  "vetur.format.defaultFormatter.ts": "none",
-
-  // code runner
-  "code-runner.clearPreviousOutput": true,
-  "code-runner.runInTerminal": true,
-  "code-runner.executorMap": {
-    "cpp": "cd $dir && g++ -O2 -std=c++17 $fileName && ./a.out"
-  },
-
-  // C, C++
-  "C_Cpp.updateChannel": "Insiders",
-  "C_Cpp.clang_format_style": "{BasedOnStyle: Google, BreakBeforeBraces: Stroustrup, IndentWidth: 4, ColumnLimit: 0, AccessModifierOffset: -4, IndentCaseLabels: false}",
-
-  // Haskell
-  "languageServerHaskell.hieExecutablePath": "~/.local/bin/hie",
-
-  // Flutter (Dart)
-  "dart.flutterSdkPath": "/Users/uesho/develop/flutter",
-
-  // Go
-  "go.gopath": "/Users/uesho/go",
-  "go.useLanguageServer": true,
-  "[go.mod]": {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    }
-  },
-  "gopls": {
-    // Add parameter placeholders when completing a function.
-    "usePlaceholders": true,
-    // If true, enable additional analyses with staticcheck.
-    // Warning: This will significantly increase memory usage.
-    "staticcheck": false
-  },
-  "go.toolsEnvVars": {
-    "GO111MODULE": "auto"
-  },
-
-  // 言語ごとの設定
-  "[c]": {
-    "editor.tabSize": 4,
-    "editor.formatOnSave": true
-  },
-  "[cpp]": {
-    "editor.tabSize": 4,
-    "editor.formatOnSave": true
-  },
-  "[ruby]": {
-    "editor.tabSize": 2
-  },
-  "[go]": {
-    "editor.tabSize": 4,
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    },
-    "editor.snippetSuggestions": "none"
-  },
-  "[javascript]": {
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.tabSize": 2,
-    // "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[vue]": {
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[markdown]": {
-    "editor.tabSize": 2,
+    "editor.rulers": [
+        119
+    ],
     "editor.wordWrap": "on",
-    "editor.quickSuggestions": false
-  },
-  "[json]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue"
-  ],
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+    "editor.minimap.enabled": false,
+    "editor.bracketPairColorization.enabled": true,
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook",
+        "*.xml": "default"
+    },
+    "hediet.vscode-drawio.codeLinkActivated": false,
+    "gitlens.defaultDateFormat": null,
+    "gitlens.currentLine.pullRequests.enabled": false,
+    "gitlens.codeLens.scopes": [
+        "containers"
+    ],
+    "gitlens.statusBar.pullRequests.enabled": false,
+    "gitlens.codeLens.recentChange.command": "gitlens.showQuickCommitDetails",
+    "gitlens.codeLens.enabled": false,
+    "material-icon-theme.folders.theme": "classic",
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "[ ]",
+        "[x]",
+        "uesho"
+    ],
+    "todo-tree.highlights.customHighlight": {
+        "TODO": {
+            "icon": "check"
+        },
+        "HACK": {
+            "icon": "thumbsup"
+        },
+        "BUG": {
+            "icon": "bug"
+        },
+        "FIXME": {
+            "icon": "flame"
+        },
+        "[ ]": {
+            "background": "#ff000080"
+        },
+        "[x]": {
+            "background": "#00ff0080"
+        }
+    },
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "cfnLint.path": "/home/ueda/.local/bin/cfn-lint",
+    "yaml.schemas": {
+        "https://d33vqc0rt9ld30.cloudfront.net/latest/gzip/CloudFormationResourceSpecification.json": [
+            "*.cf.yaml",
+            "*.cf.yml",
+            "*.cfn/*.yaml",
+            "*.cfn/*.yaml",
+            "cloud*formation/*.yaml",
+            "cloud*formation/*.yml",
+        ]
+    },
+    "yaml.customTags": [
+        "!Ref",
+        "!Sub scalar",
+        "!Sub sequence",
+        "!Join sequence",
+        "!FindInMap sequence",
+        "!GetAtt scalar",
+        "!GetAtt sequence",
+        "!Base64 mapping",
+        "!GetAZs",
+        "!Select scalar",
+        "!Select sequence",
+        "!Split sequence",
+        "!ImportValue",
+        "!Condition",
+        "!Equals sequence",
+        "!And",
+        "!If",
+        "!Not",
+        "!Or",
+        "!And sequence",
+        "!If sequence",
+        "!Not sequence",
+        "!Equals",
+        "!Or sequence",
+        "!FindInMap",
+        "!Base64",
+        "!Join",
+        "!Cidr",
+        "!Sub",
+        "!GetAtt",
+        "!ImportValue sequence",
+        "!Select",
+        "!Split"
+    ],
+    "yaml.validate": false,
+    "redhat.telemetry.enabled": false,
+    "autoDocstring.docstringFormat": "numpy",
+    "hediet.vscode-drawio.theme": "Kennedy",
+    "files.exclude": {
+        "**/__pycache__/": true,
+        "**/.pytest_cache/": true
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "darkriszty.markdown-table-prettify"
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    // vim https://gist.github.com/JoakoV3/2588968e550e71b715edfeb37734c56b
+    "vim.easymotion": true, // 検索した位置をジャンプできる, リーダーキーを2回押すとモードに入る
+    "vim.incsearch": true, // /で検索
+    "vim.useSystemClipboard": true, // システムのclipboardにコピー
+    "vim.useCtrlKeys": true, //諸々のctrlキーを使った操作が有効になる
+    "vim.hlsearch": true, // 検索結果をハイライト
+    "vim.sneak": true, // sでモードに入り、その後検索したい文字をうち、;で移動
+    "vim.visualstar": true, // カーソル上にあるワードを"*"で検索
+    "vim.foldfix": true, // 折りたたまれた場所を無視する
+    "vim.statusBarColorControl": false, // VSCodeが軽くなる
+    "vim.leader": "<space>", // leader を space に設定
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
+        },
+        {
+            // タブ移動
+            "before": [
+                "<tab>"
+            ],
+            "after": [
+                "workbench.action.nextEditor"
+            ]
+        },
+        {
+            "before": [
+                "<S-tab>"
+            ],
+            "commands": [
+                "workbench.action.previousEditor"
+            ]
+        }
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        },
+        {
+            "before": [
+                "<C-j>"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            // visual modeでタブ
+            "before": [
+                "<C-[>"
+            ],
+            "after": [
+                ">",
+                "g",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "<C-]>"
+            ],
+            "after": [
+                "<",
+                "g",
+                "v"
+            ]
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "commands": [
+                "workbench.action.splitEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f"
+            ],
+            "commands": [
+                "revealInExplorer"
+            ]
+        },
+        {
+            // 先頭行に移動
+            "before": [
+                "<leader>",
+                "h"
+            ],
+            "after": [
+                "_"
+            ]
+        },
+        {
+            "beforie": [
+                "<leader>",
+                "l"
+            ],
+            "after": [
+                "$"
+            ]
+        }
+    ],
+    "vim.handleKeys": {
+        // 行末尾に移動
+        "<C-a>": false, // all select
+        "<C-f>": false, // Search
+        "<C-c>": false, // Copy
+        "<C-x>": false, // Cut
+        "<C-v>": false, // Paste
+        "<C-z>": false, // undo
+        "<C-y>": false, // redo
+        "<C-w>": false // close window
+    },
+    "window.zoomLevel": -1,
 }
