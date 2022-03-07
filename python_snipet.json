@@ -1,4 +1,39 @@
 {
+	"def(instance method)": {
+		"prefix": "def(instance method)",
+		"body": [
+			"def ${1:funcname}(self, ${2:parameter_list}):",
+			"\t\"\"\"",
+			"\t${3:docstring}",
+			"\t\"\"\"",
+			"\t${4:pass}"
+		],
+		"description": "a instance method"
+	},
+	"def(class method)": {
+		"prefix": "def(class method)",
+		"body": [
+			"@classmethod",
+			"def ${1:funcname}(cls, ${2:parameter_list}):",
+			"\t\"\"\"",
+			"\t${3:docstring}",
+			"\t\"\"\"",
+			"\t${4:pass}"
+		],
+		"description": "a class method"
+	},
+	"def(static method)": {
+		"prefix": "def(static method)",
+		"body": [
+			"@staticmethod",
+			"def ${1:funcname}(${2:parameter_list}):",
+			"\t\"\"\"",
+			"\t${3:docstring}",
+			"\t\"\"\"",
+			"\t${4:pass}"
+		],
+		"description": "a static method"
+	},
   "main": {
     "prefix": "main",
     "body": ["if __name__ == '__main__':", "    $1"],
