@@ -8,5 +8,8 @@ jobs:
     runs-on: macOS-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Setup
-        run: curl -sL https://nagayamaryoga.github.io/dotfiles/install.sh | sh
+        run: sh ./install.sh
