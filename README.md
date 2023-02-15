@@ -1,5 +1,5 @@
 ## Installation
 
 ```shell
-$ $ curl -sL https://nagayamaryoga.github.io/dotfiles/install.sh | sh
+$ curl -sL https://ue-sho.github.io/dotfiles/install.sh | sh
 ```
