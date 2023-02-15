@@ -1,0 +1,10 @@
+[init]
+    defaultBranch = main
+    templateDir = ~/.config/git/template
+
+[commit]
+    template = .git/commit-template.txt
+
+[include]
+    path = conf.d/alias.conf
+    path = conf.d/user.conf

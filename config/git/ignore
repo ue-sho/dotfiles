@@ -1,0 +1,33 @@
+### direnv ###
+.envrc
+
+### Windows ###
+[Dd]esktop.ini
+[Tt]humbs.db
+
+### macOS ###
+.DS_Store
+._*
+
+### Vim ###
+.*.swp
+
+### VS Code ###
+.vscode/*
+
+### Node.js ###
+node_modules/
+
+### Logs ###
+*.log
+
+### Bundle ###
+.bundle/
+
+### Memo ###
+_MEMO*
+_memo*
+_TODO*
+_todo*
+_TEST*
+_test*

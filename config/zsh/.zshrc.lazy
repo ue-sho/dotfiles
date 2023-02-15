@@ -1,0 +1,68 @@
+
+case "$OSTYPE" in
+    linux*)
+        (( ${+commands[wslview]} )) && alias open='wslview'
+
+        if (( ${+commands[win32yank.exe]} )); then
+            alias pp='win32yank.exe -i'
+            alias p='win32yank.exe -o'
+        elif (( ${+commands[xsel]} )); then
+            alias pp='xsel -bi'
+            alias p='xsel -b'
+        fi
+    ;;
+    msys)
+        alias cmake='command cmake -G"Unix Makefiles"'
+        alias pp='cat >/dev/clipboard'
+        alias p='cat /dev/clipboard'
+    ;;
+    darwin*)
+        alias pp='pbcopy'
+        alias p='pbpaste'
+        alias chrome='open -a "Google Chrome"'
+        (( ${+commands[gdate]} )) && alias date='gdate'
+        (( ${+commands[gls]} )) && alias ls='gls --color=auto'
+        (( ${+commands[gmkdir]} )) && alias mkdir='gmkdir'
+        (( ${+commands[gcp]} )) && alias cp='gcp -i'
+        (( ${+commands[gmv]} )) && alias mv='gmv -i'
+        (( ${+commands[grm]} )) && alias rm='grm -i'
+        (( ${+commands[gdu]} )) && alias du='gdu'
+        (( ${+commands[ghead]} )) && alias head='ghead'
+        (( ${+commands[gtail]} )) && alias tail='gtail'
+        (( ${+commands[gsed]} )) && alias sed='gsed'
+        (( ${+commands[ggrep]} )) && alias grep='ggrep'
+        (( ${+commands[gfind]} )) && alias find='gfind'
+        (( ${+commands[gdirname]} )) && alias dirname='gdirname'
+        (( ${+commands[gxargs]} )) && alias xargs='gxargs'
+    ;;
+esac
+
+### Node.js ###
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
+
+### npm ###
+export NPM_CONFIG_DIR="$XDG_CONFIG_HOME/npm"
+export NPM_DATA_DIR="$XDG_DATA_HOME/npm"
+export NPM_CACHE_DIR="$XDG_CACHE_HOME/npm"
+export NPM_CONFIG_USERCONFIG="$NPM_CONFIG_DIR/npmrc"
+
+### Python ###
+alias python="python3"
+alias pip="pip3"
+
+### pylint ###
+export PYLINTHOME="$XDG_CACHE_HOME/pylint"
+
+### SQLite3 ###
+export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
+
+### MySQL ###
+export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
+
+### PostgreSQL ###
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
+
+### local ###
+if [ -f "$ZDOTDIR/.zshrc.local" ]; then
+    source "$ZDOTDIR/.zshrc.local"
+fi

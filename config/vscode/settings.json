@@ -266,4 +266,5 @@
         "<C-w>": false // close window
     },
     "window.zoomLevel": -1,
+    "nuxt.isNuxtApp": false,
 }
