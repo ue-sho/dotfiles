@@ -10,10 +10,7 @@ typeset -U fpath
 
 path=(
     "$HOME/.local/bin"(N-/)
-    "$CARGO_HOME/bin"(N-/)
     "$GOPATH/bin"(N-/)
-    "$DENO_INSTALL/bin"(N-/)
-    "$GEM_HOME/bin"(N-/)
     "$XDG_CONFIG_HOME/scripts/bin"(N-/)
     "$path[@]"
 )
