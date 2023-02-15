@@ -1,5 +1,5 @@
 ## Installation
 
 ```shell
-$ sh install.sh
+$ $ curl -sL https://nagayamaryoga.github.io/dotfiles/install.sh | sh
 ```

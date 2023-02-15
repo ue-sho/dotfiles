@@ -8,8 +8,5 @@ jobs:
     runs-on: macOS-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Setup
-        run: sh ./install.sh
+        run: curl -sL https://ue-sho.github.io/dotfiles/install.sh | sh
