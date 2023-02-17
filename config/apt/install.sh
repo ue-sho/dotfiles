@@ -9,24 +9,15 @@ apt-get install -y \
     bat \
     build-essential \
     clang \
-    clangd \
-    clang-format \
     cmake \
-    direnv \
-    fzf \
     git \
-    git-lfs \
-    gpg \
     jq \
     libsqlite3-dev \
     libssl-dev \
-    neovim \
     python3 \
     python3-pip \
-    python3-pynvim \
     shellcheck \
     sqlite3 \
-    tmux \
     unzip \
     wget \
     zip \

@@ -3,7 +3,7 @@
     templateDir = ~/.config/git/template
 
 [commit]
-    template = .git/commit-template.txt
+    template = ~/.config/git/commit-template.txt
 
 [include]
     path = conf.d/alias.conf
