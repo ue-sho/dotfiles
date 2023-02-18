@@ -34,3 +34,9 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 # コマンド履歴を検索
 zinit light zdharma/history-search-multi-word
+# git-completion
+zinit wait silent lucid atclone"zstyle ':completion:*:*:git:*' script git-completion.bash" atpull"%atclone" for \
+  "https://github.com/git/git/blob/master/contrib/completion/git-completion.bash"
+zinit wait lucid as"completion" atload"zicompinit; zicdreplay" mv"git-completion.zsh -> _git" for \
+  "https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh"
+
