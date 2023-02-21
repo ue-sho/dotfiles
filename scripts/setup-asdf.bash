@@ -18,7 +18,4 @@ else
     git clone "https://github.com/asdf-vm/asdf" "$ASDF_DATA_DIR"
     # shellcheck source=/dev/null
     source "$ASDF_DATA_DIR/asdf.sh"
-
-    echo "Installing asdf-vm plugins..."
-    asdf plugin add nodejs
 fi
