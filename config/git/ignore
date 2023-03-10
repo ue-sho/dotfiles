@@ -13,7 +13,7 @@
 .*.swp
 
 ### VS Code ###
-.vscode/*
+.vscode/
 
 ### Node.js ###
 node_modules/
