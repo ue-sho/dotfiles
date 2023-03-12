@@ -11,6 +11,7 @@ typeset -U fpath
 path=(
     "$HOME/.local/bin"(N-/)
     "$GOPATH/bin"(N-/)
+    "$HOME/.local/share/asdf/shims"(N-/)
     "$XDG_CONFIG_HOME/scripts/bin"(N-/)
     "$path[@]"
 )
@@ -39,4 +40,14 @@ zinit wait silent lucid atclone"zstyle ':completion:*:*:git:*' script git-comple
   "https://github.com/git/git/blob/master/contrib/completion/git-completion.bash"
 zinit wait lucid as"completion" atload"zicompinit; zicdreplay" mv"git-completion.zsh -> _git" for \
   "https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh"
+
+### asdf-vm ###
+__asdf_atload() {
+    export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+    export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/asdfrc"
+}
+zinit wait lucid light-mode for \
+    atpull'asdf plugin update --all' \
+    atload'__asdf_atload' \
+    @'asdf-vm/asdf'
 
