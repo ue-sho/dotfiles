@@ -1,5 +1,5 @@
 #!/bin/sh
-INSTALL_DIR="${INSTALL_DIR:-$HOME/repos/github.com/ue-sho/dotfiles}"
+INSTALL_DIR="${INSTALL_DIR:-$HOME/Develop/private/dotfiles}"
 
 if [ -d "$INSTALL_DIR" ]; then
     echo "Updating dotfiles..."

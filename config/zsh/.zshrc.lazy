@@ -50,10 +50,6 @@ export NPM_DATA_DIR="$XDG_DATA_HOME/npm"
 export NPM_CACHE_DIR="$XDG_CACHE_HOME/npm"
 export NPM_CONFIG_USERCONFIG="$NPM_CONFIG_DIR/npmrc"
 
-### Python ###
-alias python="python3"
-alias pip="pip3"
-
 ### pylint ###
 export PYLINTHOME="$XDG_CACHE_HOME/pylint"
 
