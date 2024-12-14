@@ -2,6 +2,9 @@
     defaultBranch = main
     templateDir = ~/.config/git/template
 
+[core]
+	editor = vim
+
 [commit]
     template = ~/.config/git/commit-template.txt
 
