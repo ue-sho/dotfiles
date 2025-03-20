@@ -8,7 +8,5 @@ local.*
 .zcomp*
 .zsh_history
 
-old/
-
 # Nix
 result
