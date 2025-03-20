@@ -1,24 +1,26 @@
 { system, username, pkgs, casks ? [], ... }:
 
 {
+  # manage nix by nix determinate system
+  nix.enable = false;
+
+
   nixpkgs.hostPlatform = system;
   users.users.${username} = {
     home = "/Users/${username}";
     shell = pkgs.zsh;
   };
 
-  # Homebrewの基本設定
   homebrew = {
     enable = true;
     onActivation = {
       autoUpdate = true;
+      cleanup = "zap";
       upgrade = true;
-      cleanup = "uninstall";
     };
     casks = casks;
   };
 
-  # システム設定
   system = {
     stateVersion = 4;
 
@@ -60,7 +62,6 @@
     };
   };
 
-  # 基本的なシステムパッケージ
   environment.systemPackages = with pkgs; [
     coreutils
     gnused
@@ -68,18 +69,15 @@
     gnugrep
   ];
 
-  # プログラム
   programs = {
     zsh.enable = true;
   };
 
-  # ホームマネージャー設定
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
   };
 
-  # セキュリティ設定
   security = {
     sudo.extraConfig = ''
       ${username} ALL=(ALL) NOPASSWD: ALL

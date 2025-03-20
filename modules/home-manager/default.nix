@@ -1,10 +1,9 @@
+# Home Manager Configuration
 { config, pkgs, ... }:
 
+# Home Manager Core Settings
 {
-  # ホームマネージャー自体の設定
-  programs.home-manager.enable = true;
-
-  # XDG Base Directory の設定
+  # XDG Base Directory Settings
   xdg = {
     enable = true;
     configHome = "${config.home.homeDirectory}/.config";
@@ -13,12 +12,12 @@
     stateHome = "${config.home.homeDirectory}/.local/state";
   };
 
-  # 基本的なホームディレクトリ設定
-  home.stateVersion = "23.11"; # バージョンは適宜変更してください
+  # Basic Home Directory Settings
+  home.stateVersion = "23.11";
 
-  # 共通のパッケージ
+  # Common Packages
   home.packages = with pkgs; [
-    # 基本ツール
+    # Basic Tools
     git
     vim
     curl
@@ -29,7 +28,7 @@
     htop
   ];
 
-  # 設定ファイルのシンボリックリンク（最初に設定）
+  # Symlink Configuration Files
   home.file = let
     dotfilesPath = "${config.home.homeDirectory}/develop/uesho-yukyu-dev/dotfiles";
   in {

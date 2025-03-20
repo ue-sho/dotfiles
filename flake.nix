@@ -18,11 +18,8 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "x86_64-darwin" "aarch64-darwin" ];
 
-      perSystem = { system, inputs', ... }: {
-        # システムごとのパッケージなどの設定（必要に応じて追加）
-      };
+      perSystem = { system, inputs', ... }: { };
 
-      # 集約したdarwinConfigurationsを定義
       flake = {
         darwinConfigurations = {
           # Intel Mac
@@ -32,7 +29,7 @@
           # "arm-mac" = import ./hosts/aarch64-darwin { inherit inputs; };
         };
 
-        # Linux設定も追加
+        # Linux
         homeConfigurations = {
           "ubuntu" = import ./hosts/x86_64-linux { inherit inputs; };
         };
