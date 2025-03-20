@@ -1,14 +1,8 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-let
-  isLinux = pkgs.stdenv.isLinux;
-  isDarwin = pkgs.stdenv.isDarwin;
-  homeDirectory = if isLinux then "/home/uesho" else "/Users/uesho";
-in
 {
-  home.username = "uesho";
-  home.homeDirectory = homeDirectory;
-  home.stateVersion = "23.11";
+  # ホームマネージャー自体の設定
+  programs.home-manager.enable = true;
 
   # XDG Base Directory の設定
   xdg = {
@@ -19,17 +13,21 @@ in
     stateHome = "${config.home.homeDirectory}/.local/state";
   };
 
-  # パッケージのインストール
+  # 基本的なホームディレクトリ設定
+  home.stateVersion = "23.11"; # バージョンは適宜変更してください
+
+  # 共通のパッケージ
   home.packages = with pkgs; [
+    # 基本ツール
     git
     vim
-    zsh
-  ] ++ (if isLinux then [
-    # Linux固有のパッケージ
-  ] else if isDarwin then [
-    # macOS固有のパッケージ
-    cowsay
-  ] else []);
+    curl
+    wget
+    jq
+    ripgrep
+    fd
+    htop
+  ];
 
   # 設定ファイルのシンボリックリンク（最初に設定）
   home.file = let

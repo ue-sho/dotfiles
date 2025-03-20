@@ -1,90 +1,105 @@
-# dotfiles
+# uesho's dotfiles
 
-このリポジトリは、Nixを使用して管理されている私の dotfiles です。
-
-## 前提条件
-
-### Nixのインストール
-
-1. [Determinate Systems](https://determinate.systems/posts/determinate-nix-installer)のインストーラーを使用してNixをインストール:
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-```
-
-2. インストール後、新しいシェルを開くか、以下のコマンドで環境を更新:
-
-```bash
-. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-```
-
-Flakesは自動的に有効化されます。
-
-## セットアップ
-
-1. このリポジトリをクローン:
-```bash
-git clone https://github.com/ue-sho/dotfiles.git
-cd dotfiles
-```
-
-2. システムに応じて以下のコマンドを実行:
-
-### macOS (Apple Silicon)
-```bash
-darwin-rebuild switch --flake .#aarch64-darwin
-```
-
-### macOS (Intel)
-```bash
-darwin-rebuild switch --flake .#x86_64-darwin
-```
-
-### Linux
-```bash
-nixos-rebuild switch --flake .#x86_64-linux
-```
+Nixを使用してdotfilesを管理するリポジトリです。nix-darwinとhome-managerを使用して、macOSとLinux環境の設定を行います。
 
 ## ディレクトリ構造
 
 ```
-.
-├── config/          # 各アプリケーションの設定ファイル
-│   ├── git/        # Gitの設定
-│   ├── vim/        # Vimの設定
-│   └── zsh/        # Zshの設定
-│
-├── hosts/          # ホスト固有の設定
-│   ├── aarch64-darwin/
-│   ├── x86_64-darwin/
-│   └── x86_64-linux/
-│
-├── modules/        # Nix モジュール
-│   ├── nix-darwin/ # macOS 固有の設定
-│   └── home-manager/ # ユーザー環境の設定
-│
-└── flake.nix      # Nix Flake 設定
+root
+|-- config         # 実際の設定ファイル
+│   ├── zsh        # Zsh設定
+│   ├── git        # Git設定
+│   ├── vim        # Vim設定
+|
+|── hosts          # ホスト固有の設定
+│   ├── aarch64-darwin  # Apple Silicon Mac用設定
+│   ├── x86_64-darwin   # Intel Mac用設定
+│   ├── x86_64-linux    # Linux用設定
+|
+|── modules        # 共通モジュール
+│   ├── nix-darwin       # nix-darwin用共通設定
+│   ├── home-manager     # home-manager用共通設定
+|
+|--flake.nix       # Nix Flake設定
 ```
 
-## 含まれる設定
+## セットアップ方法
 
-- **システム設定** (macOS):
-  - キーボードのリピート設定
-  - Finder の設定
-  - Dock の設定
+### 前提条件
 
-- **パッケージ**:
-  - 基本的なコマンドラインツール (git, vim, zsh)
-  - システムユーティリティ (coreutils, curl, wget)
+- Nixがインストールされていること
+- Flakesが有効になっていること
 
-- **アプリケーション設定**:
-  - Git
-  - Vim
-  - Zsh
+### インストール
+
+#### macOS (nix-darwin + home-manager)
+
+**Apple Silicon Mac:**
+
+```bash
+# 初回インストール
+nix run --experimental-features 'nix-command flakes' github:LnL7/nix-darwin -- \
+  switch --flake .#arm-mac
+
+# 更新
+darwin-rebuild switch --flake .#arm-mac
+```
+
+**Intel Mac:**
+
+```bash
+# 初回インストール
+nix run --experimental-features 'nix-command flakes' github:LnL7/nix-darwin -- \
+  switch --flake .#intel-mac
+
+# 更新
+darwin-rebuild switch --flake .#intel-mac
+```
+
+#### Linux または スタンドアロンhome-manager (macOS)
+
+**Linux:**
+
+```bash
+# 初回インストール
+nix run --experimental-features 'nix-command flakes' home-manager/master -- \
+  switch --flake .#uesho@ubuntu
+
+# 更新
+home-manager switch --flake .#uesho@ubuntu
+```
+
+**macOS (home-managerのみ):**
+
+```bash
+# Apple Silicon Mac
+home-manager switch --flake .#uesho@arm-mac
+
+# Intel Mac
+home-manager switch --flake .#uesho@intel-mac
+```
+
+## 更新方法
+
+設定を変更した後は、以下のコマンドで適用します：
+
+```bash
+# nix-darwin (macOS)
+darwin-rebuild switch --flake .
+
+# home-manager (Linux or スタンドアロン)
+home-manager switch --flake .
+```
 
 ## カスタマイズ
 
-1. `config/` ディレクトリ内の各設定ファイルを編集
-2. `modules/home-manager/home.nix` でパッケージや設定を追加/変更
-3. `modules/nix-darwin/default.nix` でmacOSのシステム設定を変更
+1. `config/` ディレクトリに実際の設定ファイルを配置
+2. `hosts/` 内の対応するホスト設定を編集
+3. 共通設定は `modules/` 内のファイルを編集
+
+## 注意点
+
+- 設定ファイルは `config/` ディレクトリに置かれ、シンボリックリンクされます
+- ホスト固有の設定は各ホストディレクトリで行います
+- 共通モジュールは複数のホストで再利用されます
 

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   # Nix設定
@@ -12,17 +12,25 @@
     defaults = {
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
+        ApplePressAndHoldEnabled = false;
         InitialKeyRepeat = 15;
         KeyRepeat = 2;
+        NSAutomaticCapitalizationEnabled = false;
+        NSAutomaticDashSubstitutionEnabled = false;
+        NSAutomaticPeriodSubstitutionEnabled = false;
+        NSAutomaticQuoteSubstitutionEnabled = false;
+        NSAutomaticSpellingCorrectionEnabled = false;
       };
       dock = {
         autohide = true;
+        orientation = "bottom";
+        showhidden = true;
         mru-spaces = false;
-        show-recents = false;
       };
       finder = {
         AppleShowAllExtensions = true;
-        _FXShowPosixPathInTitle = true;
+        QuitMenuItem = true;
+        FXEnableExtensionChangeWarning = false;
       };
     };
     keyboard = {
@@ -30,12 +38,25 @@
     };
   };
 
-  # システムパッケージ
+  # 基本的なシステムパッケージ
   environment.systemPackages = with pkgs; [
     coreutils
-    curl
-    wget
+    gnused
+    gnutar
+    gnugrep
   ];
+
+  # Nixのパス設定
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
+
+  # Homebrewの設定 (必要に応じて)
+  homebrew = {
+    enable = true;
+    onActivation.cleanup = "zap";
+    global.brewfile = true;
+  };
 
   # サービス
   services = {
