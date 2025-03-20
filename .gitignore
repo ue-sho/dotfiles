@@ -7,3 +7,6 @@ local.*
 *.zwc
 .zcomp*
 .zsh_history
+
+# Nix
+result
