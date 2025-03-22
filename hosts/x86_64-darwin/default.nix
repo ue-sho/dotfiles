@@ -25,6 +25,7 @@ let
     "google-japanese-ime"
     "karabiner-elements"
     "warp"
+    "wireshark"
   ];
   # }}}
 in

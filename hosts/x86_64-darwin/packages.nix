@@ -18,9 +18,14 @@ with pkgs; [
   curl
   gcc
   go
-  nodejs_20
+
+  # Programming Languages & SDKs
+  # nodejs_20
   python312
   ruby_3_2
+  kotlin
+  jdk21    # Required for Kotlin
+  gradle
 
   # GNU Commands
   coreutils
