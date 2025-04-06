@@ -26,7 +26,7 @@
           "intel-mac" = import ./hosts/x86_64-darwin { inherit inputs; };
 
           # Apple Silicon Mac
-          # "arm-mac" = import ./hosts/aarch64-darwin { inherit inputs; };
+          "arm-mac" = import ./hosts/aarch64-darwin { inherit inputs; };
         };
 
         # Linux

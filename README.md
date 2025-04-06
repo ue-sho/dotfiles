@@ -40,6 +40,11 @@ For Intel Mac:
 nix run --experimental-features 'nix-command flakes' github:LnL7/nix-darwin -- switch --flake .#intel-mac
 ```
 
+For Apple Silicon Mac:
+```bash
+nix run --experimental-features 'nix-command flakes' github:LnL7/nix-darwin -- switch --flake .#arm-mac
+```
+
 #### Linux or Standalone home-manager (macOS)
 
 ```bash
