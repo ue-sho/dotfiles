@@ -1,7 +1,7 @@
 ### Aliases ###
-alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -al'
+alias cat='bat'
 
 case "$OSTYPE" in
     linux*)
@@ -40,24 +40,6 @@ case "$OSTYPE" in
         (( ${+commands[gxargs]} )) && alias xargs='gxargs'
     ;;
 esac
-
-### Node.js ###
-export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
-
-### npm ###
-export NPM_CONFIG_DIR="$XDG_CONFIG_HOME/npm"
-export NPM_DATA_DIR="$XDG_DATA_HOME/npm"
-export NPM_CACHE_DIR="$XDG_CACHE_HOME/npm"
-export NPM_CONFIG_USERCONFIG="$NPM_CONFIG_DIR/npmrc"
-
-### SQLite3 ###
-export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
-
-### MySQL ###
-export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
-
-### PostgreSQL ###
-export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 
 ### local ###
 if [ -f "$ZDOTDIR/.zshrc.local" ]; then

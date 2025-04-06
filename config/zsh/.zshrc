@@ -11,7 +11,6 @@ typeset -U fpath
 path=(
     "$HOME/.local/bin"(N-/)
     "$GOPATH/bin"(N-/)
-    "$HOME/.local/share/asdf/shims"(N-/)
     "$XDG_CONFIG_HOME/scripts/bin"(N-/)
     "$path[@]"
 )
@@ -25,15 +24,15 @@ fpath=(
 zinit wait lucid null for \
     atinit'source "$ZDOTDIR/.zshrc.lazy"' \
     @'zdharma-continuum/null'
-# カラーテーマ
+# color theme
 zinit ice pick"async.zsh" src"pure.zsh"
 zinit light sindresorhus/pure
-# シンタックスハイライト
+# syntax highlighting
 zinit light zsh-users/zsh-syntax-highlighting
-# 入力補完
+# input completion
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
-# コマンド履歴を検索
+# search command history
 zinit light zdharma/history-search-multi-word
 # git-completion
 zinit wait silent lucid atclone"zstyle ':completion:*:*:git:*' script git-completion.bash" atpull"%atclone" for \
