@@ -1,43 +1,14 @@
 { pkgs, ... }:
 with pkgs; [
-  # Basic Tools
-  vim
-  git
-  gh
-  ghq
-  jq
-  tree
-  htop
-  bat
-  ripgrep
-  fd
-  fzf
-  git-lfs
-  gnupg
-  wget
-  curl
-  gcc
-  go
+  # Basic Tools installed by modules/home-manager/default.nix
 
   # Programming Languages & SDKs
-  # nodejs_20
+  volta  # for node.js / pnpm
   python312
-  ruby_3_2
   kotlin
-  jdk21    # Required for Kotlin
+  jdk21
   gradle
-
-  # GNU Commands
-  coreutils
-  findutils
-  gnused
-  gnugrep
-  gnutar
-  gawk
-
-  # Development Tools
-  gnumake
-  direnv
+  go
 
   # Database Related
   mysql80
@@ -45,7 +16,6 @@ with pkgs; [
   mongodb-tools
 
   # Container Tools
-  docker
   kubectl
   minikube
   kubernetes-helm
@@ -53,12 +23,7 @@ with pkgs; [
   kubectx
 
   # Additional Tools
-  ffmpeg_6
-  imagemagick
   graphviz
   shellcheck
-  tig
-  lazygit
   peco
-  trash-cli
 ]

@@ -13,7 +13,7 @@
   };
 
   # Basic Home Directory Settings
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.11";
 
   # Common Packages
   home.packages = with pkgs; [
@@ -23,14 +23,19 @@
     curl
     wget
     jq
-    ripgrep
     fd
     htop
+    gh
+    jq
+    yq
+    tree
+    bat
+    git-lfs
   ];
 
   # Symlink Configuration Files
   home.file = let
-    dotfilesPath = "${config.home.homeDirectory}/develop/uesho-yukyu-dev/dotfiles";
+    dotfilesPath = "${config.home.homeDirectory}/dotfiles";
   in {
     "${config.xdg.configHome}/git".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/git";
     "${config.xdg.configHome}/vim".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/vim";
