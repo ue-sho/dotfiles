@@ -11,21 +11,10 @@ let
 
   # {{{ Homebrew casks
   casks = [
-    "google-chrome"
-    "discord"
     "visual-studio-code"
     "docker"
-    "slack"
     "iterm2"
-    "rectangle"
-    "aws-vault"
-    "bitwarden"
-    "font-jetbrains-mono-nerd-font"
-    "font-sauce-code-pro-nerd-font"
     "google-japanese-ime"
-    "karabiner-elements"
-    "warp"
-    "wireshark"
   ];
   # }}}
 in

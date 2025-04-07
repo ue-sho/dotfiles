@@ -40,5 +40,6 @@
     "${config.xdg.configHome}/git".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/git";
     "${config.xdg.configHome}/vim".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/vim";
     "${config.xdg.configHome}/zsh".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/zsh";
+    "${config.home.homeDirectory}/.zshenv".source = config.lib.file.mkOutOfStoreSymlink ""${config.xdg.configHome}/zsh/.zshenv";
   };
 }
