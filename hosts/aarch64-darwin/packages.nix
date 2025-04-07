@@ -9,6 +9,7 @@ with pkgs; [
   jdk21
   gradle
   go
+  deno
 
   # Database Related
   postgresql_16

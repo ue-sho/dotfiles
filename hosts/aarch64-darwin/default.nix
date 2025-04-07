@@ -15,6 +15,7 @@ let
     "docker"
     "iterm2"
     "google-japanese-ime"
+    "google-cloud-sdk"
   ];
   # }}}
 in
