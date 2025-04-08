@@ -11,3 +11,6 @@
 [include]
     path = conf.d/alias.conf
     path = conf.d/user.conf
+
+[includeIf "gitdir:~/develop/"]
+  path = conf.d/work.conf
