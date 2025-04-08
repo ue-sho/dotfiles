@@ -10,8 +10,10 @@ typeset -U fpath
 
 path=(
     "$HOME/.local/bin"(N-/)
+    "$HOME/.volta/bin"
     "$GOPATH/bin"(N-/)
     "$XDG_CONFIG_HOME/scripts/bin"(N-/)
+    "$HOME/.rd/bin"(N-/)  # rancher desktop
     "$path[@]"
 )
 

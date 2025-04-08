@@ -12,5 +12,10 @@ with pkgs; [
   deno
 
   # Database Related
-  postgresql_16
+  postgresql_17
+  flyway
+
+  # Additional Tools
+  terraform
+  tflint
 ]

@@ -12,10 +12,15 @@ let
   # {{{ Homebrew casks
   casks = [
     "visual-studio-code"
-    "docker"
     "iterm2"
     "google-japanese-ime"
     "google-cloud-sdk"
+    "obsidian"
+    "rancher"
+    "intellij-idea"
+    "webstorm"
+    "datagrip"
+    "meetingbar"
   ];
   # }}}
 in

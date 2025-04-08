@@ -63,10 +63,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    coreutils
-    gnused
-    gnutar
-    gnugrep
   ];
 
   programs = {

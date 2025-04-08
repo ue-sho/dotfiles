@@ -10,3 +10,6 @@ local.*
 
 # Nix
 result
+
+# Work
+config/git/conf.d/work.conf
