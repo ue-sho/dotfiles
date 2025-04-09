@@ -21,6 +21,8 @@ let
     "webstorm"
     "datagrip"
     "meetingbar"
+    "raycast"
+    "notion"
   ];
   # }}}
 in
