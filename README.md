@@ -15,11 +15,9 @@ My personal dotfiles managed with Nix Flakes.
 │   ├── aarch64-darwin  # Apple Silicon Mac settings
 │   ├── x86_64-darwin   # Intel Mac settings
 │   ├── x86_64-linux    # Linux settings
-│   └── ...
 |── modules        # Common modules
 │   ├── nix-darwin       # nix-darwin common settings
 │   ├── home-manager     # home-manager common settings
-│   └── ...
 |--flake.nix       # Nix Flake configuration
 ```
 
@@ -29,7 +27,14 @@ My personal dotfiles managed with Nix Flakes.
 
 1. Install Nix
 2. Enable Nix Flakes
-3. Install home-manager
+3. Install zinit
+    ```bash
+    git clone "https://github.com/zdharma-continuum/zinit" "~/.config/zinit/bin"
+    ```
+4. Install brew for macOS
+    ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    ```
 
 ### Installation
 
