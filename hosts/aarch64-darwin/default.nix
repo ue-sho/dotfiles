@@ -23,6 +23,7 @@ let
     "meetingbar"
     "raycast"
     "notion"
+    "box-drive"
   ];
   # }}}
 in
