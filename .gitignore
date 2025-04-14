@@ -8,8 +8,8 @@ local.*
 .zcomp*
 .zsh_history
 
-# Nix
-result
+### vim ###
+.netrwhist
 
-# Work
-config/git/conf.d/work.conf
+### Nix ###
+result

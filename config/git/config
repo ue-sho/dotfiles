@@ -13,4 +13,4 @@
     path = conf.d/user.conf
 
 [includeIf "gitdir:~/develop/"]
-  path = conf.d/work.conf
+    path = conf.d/local.conf
