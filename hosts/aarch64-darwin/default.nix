@@ -24,6 +24,8 @@ let
     "raycast"
     "notion"
     "box-drive"
+    "karabiner-elements"
+    "postman"
   ];
   # }}}
 in
