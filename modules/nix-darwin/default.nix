@@ -4,7 +4,6 @@
   # manage nix by nix determinate system
   nix.enable = false;
 
-
   nixpkgs.hostPlatform = system;
   users.users.${username} = {
     home = "/Users/${username}";

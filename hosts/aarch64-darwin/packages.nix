@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  aqua = import ./aqua.nix { inherit pkgs; };
+in
 with pkgs; [
   # Basic Tools installed by modules/home-manager/default.nix
 
@@ -18,4 +21,6 @@ with pkgs; [
   # Additional Tools
   terraform
   tflint
+  go-task
+  aqua  # Custom aqua package defined in aqua.nix
 ]

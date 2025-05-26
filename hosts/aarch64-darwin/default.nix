@@ -26,6 +26,7 @@ let
     "box-drive"
     "karabiner-elements"
     "postman"
+    "cursor"
   ];
   # }}}
 in
