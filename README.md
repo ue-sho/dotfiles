@@ -25,16 +25,17 @@ My personal dotfiles managed with Nix Flakes.
 
 ### Prerequisites
 
-1. Install Nix
-2. Enable Nix Flakes
-3. Install zinit
+Before diving into Nix, you'll need to prepare your system.
+
+- Run the Pre-installation Script:
+    - Execute the `pre-install.sh` script located in the root of this repository.
+    - This script handles essential setup like XDG Base Directory configuration, Homebrew installation (on macOS), and Zinit installation.
     ```bash
-    git clone "https://github.com/zdharma-continuum/zinit" "~/.config/zinit/bin"
+    ./pre-install.sh
     ```
-4. Install brew for macOS
-    ```bash
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    ```
+- Install Determinate Nix:
+    - It's recommended to install [Determinate Nix](https://determinate.systems/nix/) on macOS.
+    - Determinate Nix provides a robust and reliable installation of Nix, ensuring better compatibility and a smoother experience when managing your dotfiles with Nix flakes on your Mac.
 
 ### Installation
 
@@ -42,12 +43,12 @@ My personal dotfiles managed with Nix Flakes.
 
 For Intel Mac:
 ```bash
-nix run --experimental-features 'nix-command flakes' github:LnL7/nix-darwin -- switch --flake .#intel-mac
+sudo nix run github:LnL7/nix-darwin -- switch --flake .#intel-mac
 ```
 
 For Apple Silicon Mac:
 ```bash
-nix run --experimental-features 'nix-command flakes' github:LnL7/nix-darwin -- switch --flake .#arm-mac
+sudo nix run github:LnL7/nix-darwin -- switch --flake .#arm-mac
 ```
 
 #### Linux or Standalone home-manager (macOS)
@@ -55,3 +56,9 @@ nix run --experimental-features 'nix-command flakes' github:LnL7/nix-darwin -- s
 ```bash
 home-manager switch --flake .#linux
 ```
+
+## References
+
+- [Nix Flakes Documentation](https://nixos.wiki/wiki/Flakes)
+- [Determinate Nix](https://determinate.systems/nix/)
+- [Nix Packages Search](https://search.nixos.org/packages)
