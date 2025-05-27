@@ -26,6 +26,15 @@ let
     "karabiner-elements"
     "warp"
     "wireshark"
+    "google-cloud-sdk"
+    "obsidian"
+    "intellij-idea"
+    "datagrip"
+    "meetingbar"
+    "raycast"
+    "notion"
+    "postman"
+    "cursor"
   ];
   # }}}
 in

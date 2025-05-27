@@ -12,8 +12,8 @@ with pkgs; [
 
   # Database Related
   mysql80
-  postgresql_15
-  mongodb-tools
+  postgresql_17
+  flyway
 
   # Container Tools
   kubectl
@@ -23,6 +23,7 @@ with pkgs; [
   kubectx
 
   # Additional Tools
+  terraform
   graphviz
   shellcheck
   peco
