@@ -23,6 +23,8 @@
   system = {
     stateVersion = 4;
 
+    primaryUser = username;
+
     defaults = {
       SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
       LaunchServices.LSQuarantine = false;
