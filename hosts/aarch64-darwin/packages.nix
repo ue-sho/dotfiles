@@ -8,6 +8,7 @@ with pkgs; [
   # Programming Languages & SDKs
   volta  # for node.js / pnpm
   python312
+  uv
   kotlin
   jdk21
   gradle
