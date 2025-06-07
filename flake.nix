@@ -34,15 +34,15 @@
       flake = {
         darwinConfigurations = {
           # Intel Mac
-          "intel-mac" = import ./hosts/x86_64-darwin { inherit inputs; system = "x86_64-darwin"; };
+          "intel-mac" = import ./hosts/x86_64-darwin { inherit inputs; };
 
           # Apple Silicon Mac
-          "arm-mac" = import ./hosts/aarch64-darwin { inherit inputs; system = "aarch64-darwin"; };
+          "arm-mac" = import ./hosts/aarch64-darwin { inherit inputs; };
         };
 
         # Linux
         homeConfigurations = {
-          "linux" = import ./hosts/x86_64-linux { inherit inputs; system = "x86_64-linux"; };
+          "linux" = import ./hosts/x86_64-linux { inherit inputs; };
         };
       };
     };
