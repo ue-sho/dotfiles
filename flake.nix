@@ -1,3 +1,4 @@
+# flake.nix
 {
   description = "uesho's dotfiles";
 
@@ -14,24 +15,34 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = inputs@{ flake-parts, ... }:
+  outputs = inputs@{ flake-parts, self, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "x86_64-darwin" "aarch64-darwin" ];
 
-      perSystem = { system, inputs', ... }: { };
+      perSystem = { system, inputs', ... }: {
+        apps.home-manager = {
+          type = "app";
+          program = "${inputs'.home-manager.packages.home-manager}/bin/home-manager";
+        };
+
+        apps.default = {
+          type = "app";
+          program = "${inputs'.home-manager.packages.home-manager}/bin/home-manager";
+        };
+      };
 
       flake = {
         darwinConfigurations = {
           # Intel Mac
-          "intel-mac" = import ./hosts/x86_64-darwin { inherit inputs; };
+          "intel-mac" = import ./hosts/x86_64-darwin { inherit inputs; system = "x86_64-darwin"; };
 
           # Apple Silicon Mac
-          "arm-mac" = import ./hosts/aarch64-darwin { inherit inputs; };
+          "arm-mac" = import ./hosts/aarch64-darwin { inherit inputs; system = "aarch64-darwin"; };
         };
 
         # Linux
         homeConfigurations = {
-          "ubuntu" = import ./hosts/x86_64-linux { inherit inputs; };
+          "linux" = import ./hosts/x86_64-linux { inherit inputs; system = "x86_64-linux"; };
         };
       };
     };

@@ -54,7 +54,7 @@ sudo nix run github:LnL7/nix-darwin -- switch --flake .#arm-mac
 #### Linux or Standalone home-manager (macOS)
 
 ```bash
-home-manager switch --flake .#linux
+nix run .#home-manager switch --flake .#linux
 ```
 
 ## References
