@@ -30,6 +30,19 @@ inputs.home-manager.lib.homeManagerConfiguration {
         # Database Related
         postgresql_17
         flyway
+
+        # Container Tools
+        kubectl
+        minikube
+        kubernetes-helm
+        kustomize
+        kubectx
+
+        # Additional Tools
+        terraform
+        graphviz
+        shellcheck
+        peco
       ];
     }
   ];
