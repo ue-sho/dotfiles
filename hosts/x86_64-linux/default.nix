@@ -1,8 +1,14 @@
 { inputs, ... }:
 let
   system = "x86_64-linux";
-  pkgs = import inputs.nixpkgs { inherit system; };
+  pkgs = import inputs.nixpkgs {
+    inherit system;
+    config = {
+      allowUnfree = true;
+    };
+  };
 in
+
 inputs.home-manager.lib.homeManagerConfiguration {
   inherit pkgs;
 
