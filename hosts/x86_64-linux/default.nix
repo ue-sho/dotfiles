@@ -43,6 +43,7 @@ inputs.home-manager.lib.homeManagerConfiguration {
         kubernetes-helm
         kustomize
         kubectx
+        argocd
 
         # Additional Tools
         terraform

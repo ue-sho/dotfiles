@@ -54,7 +54,7 @@ sudo nix run github:LnL7/nix-darwin -- switch --flake .#arm-mac
 #### Linux or Standalone home-manager (macOS)
 
 ```bash
-nix run .#home-manager switch --flake .#linux
+nix run --experimental-features 'nix-command flakes' .#home-manager -- switch --flake .#linux
 ```
 
 ## References
