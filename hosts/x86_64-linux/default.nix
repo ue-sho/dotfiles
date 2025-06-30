@@ -44,6 +44,7 @@ inputs.home-manager.lib.homeManagerConfiguration {
         kustomize
         kubectx
         argocd
+        kubeseal
 
         # Additional Tools
         terraform
