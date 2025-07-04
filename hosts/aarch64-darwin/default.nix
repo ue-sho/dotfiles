@@ -27,6 +27,7 @@ let
     "karabiner-elements"
     "postman"
     "cursor"
+    "1password"
   ];
   # }}}
 in
