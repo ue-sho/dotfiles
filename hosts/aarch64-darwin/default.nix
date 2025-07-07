@@ -28,6 +28,7 @@ let
     "postman"
     "cursor"
     "1password"
+    "zoom"
   ];
   # }}}
 in
