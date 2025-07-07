@@ -20,6 +20,7 @@ with pkgs; [
   flyway
 
   # Additional Tools
+  awscli2
   terraform
   tflint
   go-task
