@@ -14,7 +14,7 @@ let
     "visual-studio-code"
     "iterm2"
     "google-japanese-ime"
-    "google-cloud-sdk"
+    "gcloud-cli"
     "obsidian"
     "rancher"
     "intellij-idea"
