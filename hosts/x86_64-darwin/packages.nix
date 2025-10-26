@@ -9,6 +9,7 @@ with pkgs; [
   jdk21
   gradle
   go
+  ruby
 
   # Database Related
   mysql80
