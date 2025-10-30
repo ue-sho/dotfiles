@@ -9,7 +9,6 @@ with pkgs; [
   jdk21
   gradle
   go
-  ruby
 
   # Database Related
   mysql80
@@ -28,4 +27,5 @@ with pkgs; [
   graphviz
   shellcheck
   peco
+  mise
 ]
