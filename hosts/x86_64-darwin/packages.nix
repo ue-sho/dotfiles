@@ -28,4 +28,6 @@ with pkgs; [
   shellcheck
   peco
   mise
+  libyaml # for ruby
+  gmp     # for ruby
 ]
