@@ -25,4 +25,5 @@ with pkgs; [
   tflint
   go-task
   aqua  # Custom aqua package defined in aqua.nix
+  mise
 ]

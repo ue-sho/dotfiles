@@ -17,9 +17,6 @@ let
     "gcloud-cli"
     "obsidian"
     "rancher"
-    "intellij-idea"
-    "webstorm"
-    "datagrip"
     "meetingbar"
     "raycast"
     "notion"
@@ -29,6 +26,10 @@ let
     "cursor"
     "1password"
     "zoom"
+
+    # "intellij-idea"
+    # "webstorm"
+    # "datagrip"
   ];
   # }}}
 in
