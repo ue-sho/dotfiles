@@ -9,6 +9,7 @@ pnpm = "latest"
 python = "3.12"
 ruby = "3.3.8"
 rust = "latest"
+shellcheck = "latest"
 task = "latest"
 terraform = "latest"
 tflint = "latest"
@@ -29,5 +30,31 @@ while read branch upstream; do
   remote_branch="${upstream#origin/}" && \
   [ -z "$(git ls-remote --heads origin "$remote_branch" 2>/dev/null)" ] && \
   git branch -d "$branch" 2>/dev/null || true
+done
+"""
+
+[tasks.shellcheck]
+description = "すべてのシェルスクリプトをチェックする"
+run = """
+find . -type f -name "*.sh" ! -path "./.git/*" ! -path "./result/*" | \
+while read -r file; do
+  echo "Checking: $file"
+  shellcheck "$file" || exit 1
+done
+"""
+
+[tasks.shellcheck-file]
+description = "指定したシェルスクリプトファイルをチェックする"
+run = "shellcheck \"$@\""
+
+[tasks.shellcheck-all]
+description = "すべてのシェルスクリプトを再帰的にチェックする（シェバン行のあるファイルも含む）"
+run = """
+find . -type f ! -path "./.git/*" ! -path "./result/*" | \
+while read -r file; do
+  if head -n1 "$file" | grep -qE "^#!.*/(ba)?sh"; then
+    echo "Checking: $file"
+    shellcheck "$file" || exit 1
+  fi
 done
 """
