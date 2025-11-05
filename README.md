@@ -57,6 +57,12 @@ sudo nix run github:LnL7/nix-darwin -- switch --flake .#arm-mac
 nix run --experimental-features 'nix-command flakes' .#home-manager -- switch --flake .#linux
 ```
 
+## Update flake.lock
+
+```bash
+nix flake update
+```
+
 ## References
 
 - [Nix Flakes Documentation](https://nixos.wiki/wiki/Flakes)
