@@ -12,19 +12,20 @@ terraform = "latest"
 tflint = "latest"
 uv = "latest"
 
-[tasks.random-member]
-description = "メンバーをランダムに選ぶ"
-run = "shuf -n 1 -e Alice Bob Charlie Dave"
-
 [tasks.aws-sso-login]
 alias = "al"
 description = "SSOでログインして、現在のセッションに認証情報を設定する"
 run = "aws sso login"
 
-[tasks.gh-list-deploy]
-description = "デプロイの実行履歴を表示する"
+[tasks.clean-branch]
+description = "リモートで削除されたブランチに対応するローカルブランチを自動削除する"
 run = """
-gh run list \
-    --repo firstcontributions/first-contributions \
-    --limit 10
+git fetch --prune && \
+git for-each-ref --format '%(refname:short) %(upstream:short)' refs/heads | \
+while read branch upstream; do
+  [ -n "$upstream" ] && \
+  remote_branch="${upstream#origin/}" && \
+  [ -z "$(git ls-remote --heads origin "$remote_branch" 2>/dev/null)" ] && \
+  git branch -d "$branch" 2>/dev/null || true
+done
 """

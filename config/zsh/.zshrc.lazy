@@ -3,7 +3,6 @@ alias ls='ls -G'
 alias la='ls -a'
 alias ll='ls -al'
 alias cat='bat'
-alias cleanbranch="git fetch --prune && git for-each-ref --format '%(refname:short) %(upstream:track)' refs/heads | awk '/\[gone\]$/ {print $1}' | xargs git branch -d"
 
 case "$OSTYPE" in
     linux*)
