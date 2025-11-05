@@ -1,0 +1,16 @@
+[tasks.random-member]
+description = "メンバーをランダムに選ぶ"
+run = "shuf -n 1 -e Alice Bob Charlie Dave"
+
+[tasks.aws-sso-login]
+alias = "al"
+description = "SSOでログインして、現在のセッションに認証情報を設定する"
+run = "aws sso login"
+
+[tasks.gh-list-deploy]
+description = "デプロイの実行履歴を表示する"
+run = """
+gh run list \
+    --repo firstcontributions/first-contributions \
+    --limit 10
+"""
