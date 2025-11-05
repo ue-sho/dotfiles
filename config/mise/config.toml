@@ -1,3 +1,17 @@
+[tools]
+deno = "latest"
+go = "latest"
+node = "latest"
+npm = "latest"
+"npm:@anthropic-ai/claude-code" = "latest"
+pnpm = "latest"
+python = "3.12"
+ruby = "3.3.8"
+rust = "latest"
+terraform = "latest"
+tflint = "latest"
+uv = "latest"
+
 [tasks.random-member]
 description = "メンバーをランダムに選ぶ"
 run = "shuf -n 1 -e Alice Bob Charlie Dave"

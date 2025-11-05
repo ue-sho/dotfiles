@@ -48,3 +48,5 @@ if [ -f "$ZDOTDIR/.zshrc.local" ]; then
     source "$ZDOTDIR/.zshrc.local"
 fi
 
+# mise
+eval "$(mise activate bash)"
