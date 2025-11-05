@@ -1,4 +1,5 @@
 [tools]
+aqua = "latest"
 deno = "latest"
 go = "latest"
 node = "latest"
@@ -8,6 +9,7 @@ pnpm = "latest"
 python = "3.12"
 ruby = "3.3.8"
 rust = "latest"
+task = "latest"
 terraform = "latest"
 tflint = "latest"
 uv = "latest"

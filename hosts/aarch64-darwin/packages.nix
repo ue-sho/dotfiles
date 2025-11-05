@@ -16,7 +16,5 @@ with pkgs; [
 
   # Additional Tools
   awscli2
-  go-task
-  aqua  # Custom aqua package defined in aqua.nix
   mise
 ]
