@@ -2,6 +2,7 @@
 aqua = "latest"
 deno = "latest"
 go = "latest"
+mysql = "latest"
 node = "latest"
 npm = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"

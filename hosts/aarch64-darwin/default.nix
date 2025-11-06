@@ -26,6 +26,7 @@ let
     "cursor"
     "1password"
     "zoom"
+    "sequel-ace"
 
     # "intellij-idea"
     # "webstorm"
