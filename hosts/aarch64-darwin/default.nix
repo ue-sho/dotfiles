@@ -9,6 +9,15 @@ let
     config.allowUnfree = true;
   };
 
+  # {{{ Homebrew brews (formulae)
+  brews = [
+    # Ruby のビルドに必要 (mise で ruby を入れる際の依存)
+    "libyaml"
+    "openssl@3"
+    "xz"
+  ];
+  # }}}
+
   # {{{ Homebrew casks
   casks = [
     "visual-studio-code"
@@ -37,7 +46,7 @@ in
 nix-darwin.lib.darwinSystem {
   modules = [
     home-manager.darwinModules.home-manager
-    (import ../../modules/nix-darwin { inherit system username pkgs casks; })
+    (import ../../modules/nix-darwin { inherit system username pkgs casks brews; })
     {
       home-manager.backupFileExtension = "bk.nix";
       home-manager.users.${username} = {

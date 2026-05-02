@@ -1,4 +1,4 @@
-{ system, username, pkgs, casks ? [], ... }:
+{ system, username, pkgs, casks ? [], brews ? [], ... }:
 
 {
   # manage nix by nix determinate system
@@ -17,6 +17,7 @@
       cleanup = "zap";
       upgrade = true;
     };
+    brews = brews;
     casks = casks;
   };
 
