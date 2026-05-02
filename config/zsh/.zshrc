@@ -29,6 +29,11 @@ zinit wait lucid null for \
 # color theme
 zinit ice pick"async.zsh" src"pure.zsh"
 zinit light sindresorhus/pure
+# kube-ps1: show kube context/namespace in RPROMPT
+KUBE_PS1_SYMBOL_ENABLE=false
+zinit ice pick"kube-ps1.sh"
+zinit light jonmosco/kube-ps1
+RPROMPT='$(kube_ps1)'
 # syntax highlighting
 zinit light zsh-users/zsh-syntax-highlighting
 # input completion

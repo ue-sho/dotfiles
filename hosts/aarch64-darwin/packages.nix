@@ -11,6 +11,15 @@ with pkgs; [
   postgresql_17
   flyway
 
+  # Container Tools
+  kubectl
+  minikube
+  kubernetes-helm
+  kustomize
+  kubectx
+  argocd
+  kubeseal
+
   # Additional Tools
   awscli2
   saml2aws
