@@ -56,7 +56,7 @@
         ShowPathbar = true;
         ShowStatusBar = true;
         FXPreferredViewStyle = "clmv";
-        NewWindowTarget = "PfHm";
+        NewWindowTarget = "Home";
       };
       trackpad = {
         Clicking = true;
