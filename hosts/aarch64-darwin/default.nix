@@ -37,6 +37,9 @@ let
     "zoom"
     "sequel-ace"
 
+    # 以下は意図的に nix 管理外:
+    #   Claude.app — 公式インストーラの自動更新に任せたいため宣言しない
+
     # "intellij-idea"
     # "webstorm"
     # "datagrip"
