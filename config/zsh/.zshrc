@@ -41,3 +41,11 @@ zinit wait silent lucid atclone"zstyle ':completion:*:*:git:*' script git-comple
   "https://github.com/git/git/blob/master/contrib/completion/git-completion.bash"
 zinit wait lucid as"completion" atload"zicompinit; zicdreplay" mv"git-completion.zsh -> _git" for \
   "https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh"
+
+# pnpm
+export PNPM_HOME="/Users/shohei.ueda/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

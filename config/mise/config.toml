@@ -5,14 +5,13 @@ go = "latest"
 mysql = "latest"
 node = "latest"
 npm = "latest"
-"npm:@anthropic-ai/claude-code" = "latest"
 pnpm = "latest"
 python = "3.12"
 ruby = "3.3.8"
 rust = "latest"
 shellcheck = "latest"
 task = "latest"
-terraform = "latest"
+terraform = "1.8.5"
 tflint = "latest"
 uv = "latest"
 yarn = "latest"
@@ -59,4 +58,16 @@ while read -r file; do
     shellcheck "$file" || exit 1
   fi
 done
+"""
+
+[tasks.empty-commit]
+description = "空コミットを作成"
+run = "git commit --allow-empty -m 'first commit'"
+
+[tasks.kill-port]
+description = "指定したポートで実行中のプロセスを強制終了する（例: mise run kill-port 8080）"
+run = """
+PORT=${1:-8080}
+lsof -ti:$PORT | xargs kill -9 2>/dev/null || true
+sleep 1
 """
