@@ -26,7 +26,6 @@
     fd
     htop
     gh
-    jq
     yq
     tree
     bat
