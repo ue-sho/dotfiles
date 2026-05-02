@@ -1,7 +1,4 @@
 { pkgs, ... }:
-let
-  aqua = import ./aqua.nix { inherit pkgs; };
-in
 with pkgs; [
   # Basic Tools installed by modules/home-manager/default.nix
 
