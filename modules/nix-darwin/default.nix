@@ -53,6 +53,10 @@
         QuitMenuItem = true;
         FXEnableExtensionChangeWarning = false;
         _FXShowPosixPathInTitle = true;
+        ShowPathbar = true;
+        ShowStatusBar = true;
+        FXPreferredViewStyle = "clmv";
+        NewWindowTarget = "PfHm";
       };
       trackpad = {
         Clicking = true;
