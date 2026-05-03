@@ -20,6 +20,10 @@ with pkgs; [
   argocd
   kubeseal
 
+  # Terraform Tools
+  terraform-docs
+  tflint
+
   # Additional Tools
   awscli2
   saml2aws
