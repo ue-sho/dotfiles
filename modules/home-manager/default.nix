@@ -30,6 +30,7 @@
     tree
     bat
     git-lfs
+    direnv
   ];
 
   # Symlink Configuration Files
