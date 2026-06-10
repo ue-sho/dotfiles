@@ -35,15 +35,6 @@ If the user reports "I edited X but nothing changed," the question is which side
 - Never `brew install` something you intend to keep without also adding it to the corresponding host file.
 - Before `brew uninstall`-ing leaves to clean up, double-check `brew uses --installed <pkg>` so you don't break a runtime dependency that nix isn't tracking (e.g. mise-managed Ruby pulls `libyaml`).
 
-## GUI apps that are deliberately NOT in `casks`
-
-Documented inline in `hosts/aarch64-darwin/default.nix`. The categories are:
-
-- **Self-updating apps where the vendor channel is preferred** — Claude.app, Google Chrome, Slack, Adobe Acrobat Reader. Putting these under cask would fight their own auto-updaters.
-- **Corporate MDM-managed apps** — Microsoft Office, Cisco, Falcon (CrowdStrike), Okta Verify, Self Service. The MDM owns these; nix touching them creates conflicts.
-
-When in doubt, ask before adding a new cask: "is this self-updating, or MDM-managed?"
-
 ## Username differs by host
 
 - `aarch64-darwin` → `shohei.ueda`
