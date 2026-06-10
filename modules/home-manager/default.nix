@@ -42,5 +42,13 @@
     "${config.xdg.configHome}/zsh".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/zsh";
     "${config.xdg.configHome}/mise".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/mise";
     "${config.home.homeDirectory}/.zshenv".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/zsh/.zshenv";
+
+    # Claude Code reads ~/.claude (not ~/.config). Link the reusable config:
+    # settings + global instructions as files, skills/commands as whole dirs so
+    # newly created skills land in dotfiles automatically. Volatile data
+    # (history, sessions, cache, ...) stays out because only these paths link.
+    "${config.home.homeDirectory}/.claude/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/claude/settings.json";
+    "${config.home.homeDirectory}/.claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/claude/CLAUDE.md";
+    "${config.home.homeDirectory}/.claude/skills".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/claude/skills";
   };
 }

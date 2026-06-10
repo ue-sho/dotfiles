@@ -1,0 +1,16 @@
+*
+
+!.gitignore
+!CLAUDE.md
+!settings.json
+
+# skills は丸ごと symlink されるが、コミットするのは明示したものだけ。
+# 親の skills/ を一度再許可しないと配下を再許可できない (git の仕様)。
+!skills/
+skills/*
+!skills/grill-me/
+!skills/grill-me/**
+!skills/fix-issue/
+!skills/fix-issue/**
+!skills/feature-pr-format/
+!skills/feature-pr-format/**

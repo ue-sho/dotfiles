@@ -10,6 +10,7 @@ My personal dotfiles managed with Nix Flakes.
 │   ├── zsh        # Zsh configuration
 │   ├── git        # Git configuration
 │   ├── vim        # Vim configuration
+│   ├── claude     # Claude Code settings, global CLAUDE.md, skills, commands (symlinked into ~/.claude)
 │   └── ...
 |── hosts          # Host-specific configurations
 │   ├── aarch64-darwin  # Apple Silicon Mac settings

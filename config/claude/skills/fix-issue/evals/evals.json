@@ -1,0 +1,26 @@
+{
+  "skill_name": "fix-issue",
+  "evals": [
+    {
+      "id": 0,
+      "name": "mixed-batch-typical",
+      "prompt": "I have an open PR for the current branch (PR #42). Please go through the review comments and deal with them.",
+      "expected_output": "Skill identifies PR #42, fetches 4 review + 1 issue comment, filters out the user's own comment and the CI bot notification, leaving 4 actionable items. Recommends ADDRESS for typo fix, ADDRESS for response validation, DECLINE for the RTK Query rewrite (out of scope), ADDRESS for adding a test. Applies fixes in separate commits (typo / validation / test), replies to each thread with short SHA, posts a polite decline reply to the architecture suggestion.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "filter-resolved-and-self",
+      "prompt": "Please review PR comments and fix them. Use PR #55.",
+      "expected_output": "Skill identifies PR #55. Of 5 review comments it fetches, 2 are resolved threads and 1 is the user's own — those are filtered out. The remaining 2 actionable items (debounce return type, trim() suggestion) are presented for triage. Skill does NOT triage resolved or self-authored comments.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "grouping-and-nuanced-triage",
+      "prompt": "I want to address the feedback on PR #78. Can you help me go through it?",
+      "expected_output": "Skill identifies PR #78, fetches 4 review comments. Recommends grouping comments 1 and 2 (both about the discount map refactor — same underlying fix). Recommends CLARIFY for comment 3 (frank-pm's vague 'feels off' — not enough info to act on). Recommends DEFER for comment 4 (grace-architect's split into PricingService/OrderValidator — valid but scope creep). Drafts appropriate replies for each category.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "awsAuthRefresh": "aws sso login",
+  "env": {},
+  "includeCoAuthoredBy": true,
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Bash(git status)",
+      "Bash(git diff)",
+      "Bash(git add :*)",
+      "Bash(git commit -m :*)",
+    ],
+    "deny": [
+      "Bash(rm :*)"
+    ],
+    "defaultMode": "default",
+    "additionalDirectories": []
+  },
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "frontend-design@claude-code-plugins": true,
+    "superpowers@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": false,
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true
+}
