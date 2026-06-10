@@ -30,10 +30,17 @@ zinit wait lucid null for \
 zinit ice pick"async.zsh" src"pure.zsh"
 zinit light sindresorhus/pure
 # kube-ps1: show kube context/namespace in RPROMPT
+# kube_ps1 は内部で kubectl を起動するため、到達不能なクラスタ(例: 自宅の
+# raspberrypi)が current-context だと kubectl がタイムアウト待ちで数秒固まる。
+# 遅延ロード(wait)でも初回コマンド入力時にその待ちが走ってしまうので、
+# プラグインは一切自動ロードせず、`kubeon` を呼んだときだけロードする。
+# (`kubeoff` で RPROMPT を消す。プラグインはロードされたまま残る。)
 KUBE_PS1_SYMBOL_ENABLE=false
-zinit ice pick"kube-ps1.sh"
-zinit light jonmosco/kube-ps1
-RPROMPT='$(kube_ps1)'
+kubeon() {
+  zinit light jonmosco/kube-ps1
+  RPROMPT='$(kube_ps1)'
+}
+kubeoff() { RPROMPT=''; }
 # syntax highlighting
 zinit light zsh-users/zsh-syntax-highlighting
 # input completion
