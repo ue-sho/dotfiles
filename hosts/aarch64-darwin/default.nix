@@ -33,6 +33,7 @@ let
     "karabiner-elements"
     "postman"
     "cursor"
+    "superset"
     "1password"
     "zoom"
     "sequel-ace"
