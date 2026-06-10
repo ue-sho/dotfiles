@@ -11,7 +11,7 @@ ruby = "3.3.8"
 rust = "latest"
 shellcheck = "latest"
 task = "latest"
-terraform = "1.15.1"
+terraform = "1.8.5"
 uv = "latest"
 yarn = "latest"
 
