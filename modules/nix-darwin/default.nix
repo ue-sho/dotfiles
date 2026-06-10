@@ -16,6 +16,8 @@
       autoUpdate = true;
       cleanup = "zap";
       upgrade = true;
+      # Homebrew 5.x requires --force (or HOMEBREW_ASK) for `brew bundle --cleanup`.
+      extraFlags = [ "--force" ];
     };
     brews = brews;
     casks = casks;
