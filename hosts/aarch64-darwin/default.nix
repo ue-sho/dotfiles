@@ -33,7 +33,6 @@ let
     "karabiner-elements"
     "postman"
     "cursor"
-    "superset"
     "cmux"
     "1password"
     "zoom"
