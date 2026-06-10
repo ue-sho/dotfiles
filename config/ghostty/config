@@ -6,7 +6,7 @@ font-family = Monaco
 font-size = 12
 
 # Built-in dark theme (palette/background/foreground come from here)
-theme = Bluloco Dark
+theme = Iceberg Dark
 
 # Translucent background with blur (lower opacity = more see-through)
 background-opacity = 0.85
