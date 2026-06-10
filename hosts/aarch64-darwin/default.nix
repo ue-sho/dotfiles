@@ -34,6 +34,7 @@ let
     "postman"
     "cursor"
     "superset"
+    "cmux"
     "1password"
     "zoom"
     "sequel-ace"
