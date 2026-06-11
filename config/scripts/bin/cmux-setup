@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+# cmux-setup — worktree ディレクトリ用に cmux の 4 ペインワークスペースを組み立てる
+#
+#   ┌──────────────┬──────────────────┐
+#   │ yazi         │ difit (browser)  │
+#   ├──────────────┼──────────────────┤
+#   │ terminal     │ claude           │
+#   └──────────────┴──────────────────┘
+#
+# 使い方: cmux-setup [dir]
+#   dir 省略時は gtr の postCreate フックが渡す $WORKTREE_PATH、それも無ければカレント。
+#   git gtr new <branch> の postCreate フックから呼ばれる想定 (config/git/config 参照)。
+set -euo pipefail
+export CMUX_QUIET=1
+
+DIR="${1:-${WORKTREE_PATH:-$PWD}}"
+DIR="$(cd "$DIR" && pwd)"
+TITLE="$(basename "$DIR")"
+
+# cmux の外 (ssh 先など) で gtr を使ったときは黙ってスキップする
+if ! command -v cmux >/dev/null 2>&1 || ! cmux ping >/dev/null 2>&1; then
+    echo "cmux-setup: cmux が起動していないためスキップ" >&2
+    exit 0
+fi
+
+# .envrc があれば direnv を許可しておく
+if [ -f "$DIR/.envrc" ] && command -v direnv >/dev/null 2>&1; then
+    (cd "$DIR" && direnv allow)
+fi
+
+# ブラウザペインに渡す URL を確定させるため、ポートはこちらで決める
+# (difit 任せにすると使用中ポートのとき +1 にずれて URL が分からなくなる)
+PORT=4966
+while lsof -nP -iTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1; do
+    PORT=$((PORT + 1))
+done
+
+# 短い ref (workspace:N) は番号が振り直されるので、作成直後に UUID へ解決して使う
+REF="$(cmux workspace create --name "$TITLE" --cwd "$DIR" --focus true | awk '{print $2}')"
+WS="$(cmux workspace list --id-format both | awk -v ref="$REF" \
+    '{ for (i = 1; i < NF; i++) if ($i == ref) { print $(i + 1); exit } }')"
+[ -n "$WS" ] || { echo "cmux-setup: ワークスペースの作成に失敗" >&2; exit 1; }
+
+# 初期サーフェス (左上) を取得し、右 → 左下 → 右下 の順に分割する
+S1="$(cmux list-pane-surfaces --workspace "$WS" --id-format both | awk \
+    '{ for (i = 1; i < NF; i++) if ($i ~ /^surface:/) { print $(i + 1); exit } }')"
+S2="$(cmux new-split right --workspace "$WS" --surface "$S1" --focus false --id-format uuids | awk '{print $2}')"
+S3="$(cmux new-split down --workspace "$WS" --surface "$S1" --focus false --id-format uuids | awk '{print $2}')"
+S4="$(cmux new-split down --workspace "$WS" --surface "$S2" --focus false --id-format uuids | awk '{print $2}')"
+: "$S3" # 左下は素のシェルのまま使うので ID は不要
+
+# サーフェスが属するペインの UUID を tree 出力から引く
+pane_of() {
+    cmux tree --workspace "$WS" --id-format both | awk -v s="$1" '
+        { for (i = 1; i < NF; i++) if ($i == "pane" && $(i + 1) ~ /^pane:/) pane = $(i + 2) }
+        index($0, s) { print pane; exit }'
+}
+
+# 左右比をざっくり 40:60 に (右ペインを左へ広げる)
+RIGHT_PANE="$(pane_of "$S2")"
+cmux resize-pane --pane "$RIGHT_PANE" --workspace "$WS" -L --amount 10 >/dev/null 2>&1 || true
+
+run_in() { # run_in <surface> <command>
+    cmux send --workspace "$WS" --surface "$1" "$2" >/dev/null
+    cmux send-key --workspace "$WS" --surface "$1" Enter >/dev/null
+}
+
+# シェル起動 (zinit の遅延ロード含む) を待ってからコマンドを流し込む
+sleep 1.5
+run_in "$S1" 'command -v yazi >/dev/null && yazi || ls -la'
+run_in "$S2" "mise run difit-serve --port $PORT"
+run_in "$S4" 'claude'
+
+# difit サーバーが上がったら、その URL を同じペインのブラウザタブで開く
+# (difit は localhost = ::1 にバインドするので 127.0.0.1 ではなく localhost を使う)
+for _ in $(seq 1 50); do
+    curl -fsS -o /dev/null "http://localhost:$PORT" 2>/dev/null && break
+    sleep 0.3
+done
+cmux new-surface --type browser --pane "$RIGHT_PANE" --workspace "$WS" \
+    --url "http://localhost:$PORT" --focus true >/dev/null
+
+# 仕上げに claude のペインへフォーカスを戻す
+cmux focus-pane --pane "$(pane_of "$S4")" --workspace "$WS" >/dev/null 2>&1 || true
+
+echo "cmux-setup: workspace '$TITLE' を作成しました (difit: http://localhost:$PORT)"

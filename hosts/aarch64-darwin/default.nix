@@ -9,12 +9,24 @@ let
     config.allowUnfree = true;
   };
 
+  # {{{ Homebrew taps
+  taps = [
+    "coderabbitai/tap" # git-gtr
+  ];
+  # }}}
+
   # {{{ Homebrew brews (formulae)
   brews = [
     # Ruby のビルドに必要 (mise で ruby を入れる際の依存)
     "libyaml"
     "openssl@3"
     "xz"
+    "readline"
+
+    "typst"
+
+    # git worktree 管理 (git gtr new の postCreate で cmux-setup を起動する)
+    "coderabbitai/tap/git-gtr"
   ];
   # }}}
 
@@ -50,7 +62,7 @@ in
 nix-darwin.lib.darwinSystem {
   modules = [
     home-manager.darwinModules.home-manager
-    (import ../../modules/nix-darwin { inherit system username pkgs casks brews; })
+    (import ../../modules/nix-darwin { inherit system username pkgs casks brews taps; })
     {
       home-manager.backupFileExtension = "bk.nix";
       home-manager.users.${username} = {

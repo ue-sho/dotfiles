@@ -1,4 +1,5 @@
 [tools]
+"npm:difit" = "latest"
 aqua = "latest"
 deno = "latest"
 go = "latest"
@@ -14,6 +15,27 @@ task = "latest"
 terraform = "1.8.5"
 uv = "latest"
 yarn = "latest"
+
+[tasks.switch]
+description = "nix-darwin の設定を適用する (arm-mac / intel-mac を自動判別)"
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+[ "$(uname)" = "Darwin" ] || { echo "Darwin 専用タスク" >&2; exit 1; }
+case "$(uname -m)" in
+  arm64) host=arm-mac ;;
+  x86_64) host=intel-mac ;;
+esac
+cd ~/dotfiles && sudo nix run github:LnL7/nix-darwin -- switch --flake ".#$host"
+"""
+
+[tasks.difit]
+description = "未コミットの全差分 (未追跡ファイル含む) をブラウザでレビューする"
+run = "difit . --include-untracked"
+
+[tasks.difit-serve]
+description = "difit をブラウザ自動起動なしで立ち上げる (cmux-setup が右上ペインで使用。引数例: --port 4966)"
+run = "difit . --include-untracked --no-open --keep-alive"
 
 [tasks.aws-sso-login]
 alias = "al"

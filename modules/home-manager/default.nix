@@ -31,6 +31,7 @@
     bat
     git-lfs
     direnv
+    yazi
   ];
 
   # Symlink Configuration Files
@@ -42,6 +43,7 @@
     "${config.xdg.configHome}/zsh".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/zsh";
     "${config.xdg.configHome}/mise".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/mise";
     "${config.xdg.configHome}/ghostty".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/ghostty";
+    "${config.xdg.configHome}/scripts".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/config/scripts";
     "${config.home.homeDirectory}/.zshenv".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/zsh/.zshenv";
 
     # Claude Code reads ~/.claude (not ~/.config). Link the reusable config:

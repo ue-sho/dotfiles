@@ -1,4 +1,4 @@
-{ system, username, pkgs, casks ? [], brews ? [], ... }:
+{ system, username, pkgs, casks ? [], brews ? [], taps ? [], ... }:
 
 {
   # manage nix by nix determinate system
@@ -19,6 +19,7 @@
       # Homebrew 5.x requires --force (or HOMEBREW_ASK) for `brew bundle --cleanup`.
       extraFlags = [ "--force" ];
     };
+    taps = taps;
     brews = brews;
     casks = casks;
   };

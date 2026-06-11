@@ -52,3 +52,14 @@ eval "$(mise activate zsh)"
 
 # direnv
 eval "$(direnv hook zsh)"
+
+# yazi: 終了時にいたディレクトリへ cd する
+function y() {
+    local tmp cwd
+    tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    command rm -f -- "$tmp"
+}
