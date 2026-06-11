@@ -3,6 +3,7 @@ alias ls='ls -G'
 alias la='ls -a'
 alias ll='ls -al'
 alias cat='bat'
+alias claude-d='claude --dangerously-skip-permissions'
 
 case "$OSTYPE" in
     linux*)

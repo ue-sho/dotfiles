@@ -69,7 +69,7 @@ run_in() { # run_in <surface> <command>
 sleep 1.5
 run_in "$S1" 'command -v yazi >/dev/null && yazi || ls -la'
 run_in "$S2" "mise run difit-serve --port $PORT"
-run_in "$S4" 'claude'
+run_in "$S4" 'claude --dangerously-skip-permissions'
 
 # difit サーバーが上がったら、その URL を同じペインのブラウザタブで開く
 # (difit は localhost = ::1 にバインドするので 127.0.0.1 ではなく localhost を使う)
