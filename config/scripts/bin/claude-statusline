@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Claude Code の statusLine: 1 行目 ccstatusline / 2 行目 ccusage のコスト表示
+set -u
+
+input="$(cat)"
+printf '%s' "$input" | npx -y ccstatusline@latest || true
+echo
+printf '%s' "$input" | npx -y ccusage@latest statusline 2>/dev/null || true
+exit 0
