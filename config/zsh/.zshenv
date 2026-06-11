@@ -9,3 +9,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 ### zsh ###
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+### editor ###
+export EDITOR=vim
+export VISUAL=vim
