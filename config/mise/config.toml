@@ -92,3 +92,22 @@ PORT=${1:-8080}
 lsof -ti:$PORT | xargs kill -9 2>/dev/null || true
 sleep 1
 """
+
+[tasks.auto-review]
+description = "Auto PR Review を今すぐ手動実行する（launchd kickstart）"
+run = "launchctl kickstart gui/$(id -u)/com.shohei-ueda.auto-review-prs"
+
+[tasks.auto-review-log]
+description = "Auto PR Review の本日分ログを tail する"
+run = "tail -f ~/.local/state/auto-review-prs/logs/auto_review_$(date +%Y-%m-%d).log"
+
+[tasks.auto-review-reload]
+description = "Auto PR Review の launchd 設定を再読み込みする（plist 変更後に実行）"
+run = """
+launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.shohei-ueda.auto-review-prs.plist 2>/dev/null || true
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.shohei-ueda.auto-review-prs.plist
+"""
+
+[tasks.auto-review-unlock]
+description = "Auto PR Review のロック残留を解消する（Already running が続く場合）"
+run = "rmdir ~/.local/state/auto-review-prs/run.lock"
