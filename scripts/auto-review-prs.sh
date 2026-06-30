@@ -5,7 +5,8 @@
 #
 # 設計方針:
 #   - レビューの中身だけを Claude に任せ、通知・冪等性・後片付けはシェルで決定的に制御する
-#   - Slack 通知は Webhook ではなく、通知専用の claude -p (Slack MCP) 経由で行う
+#   - Slack 通知は Incoming Webhook に curl で直接 POST する (claude -p + MCP 経由は
+#     2026-06-23 に組織ポリシーで non-interactive 実行が承認不能になったため廃止)
 #   - レビュー済み判定は「本日分レポートファイルの有無」(日付が変わると再レビューされる仕様)
 set -uo pipefail
 
@@ -16,14 +17,13 @@ REPOS=(meets-revent)
 ORG="sansaninc"
 WORKSPACE="$HOME/develop"
 GITHUB_USER="shohei-ueda_sansan"
-SLACK_CHANNEL="C0BA5AA7UMS"  # #times-uesho-private
 REVIEW_MODEL="opus"
-NOTIFY_MODEL="sonnet"
 CLAUDE_BIN="$HOME/.local/bin/claude"
 
 STATE_DIR="$HOME/.local/state/auto-review-prs"
 LOG_DIR="$STATE_DIR/logs"
 NOTIFIED_FILE="$STATE_DIR/notified.txt"
+WEBHOOK_FILE="$STATE_DIR/slack-webhook-url"  # git 外・600。Incoming Webhook URL を 1 行で保存
 LOCK_DIR="$STATE_DIR/run.lock"
 TODAY=$(date +%Y-%m-%d)
 LOG_FILE="$LOG_DIR/auto_review_${TODAY}.log"
@@ -49,31 +49,27 @@ trap 'rmdir "$LOCK_DIR"' EXIT
 
 log "=== Auto Review start ==="
 
-# Slack 通知: 通知専用の claude -p に「投稿だけ」させる
+# Slack 通知: Incoming Webhook に curl で直接 POST する。
+# 成否を戻り値で返す (0=送信成功)。HTTP 200 以外・URL 未設定はすべて失敗扱いにし、
+# 呼び出し側でログに明示する (旧実装は失敗を握りつぶしていた)。
 notify_slack() {
   local message="$1"
-  "$CLAUDE_BIN" -p --permission-mode bypassPermissions --model "$NOTIFY_MODEL" >> "$LOG_FILE" 2>&1 <<EOF
-ToolSearch ツールで 'slack send message' を検索して Slack 送信ツールをロードしてください。
-MCP サーバーが接続中の場合は ToolSearch が接続を待ちます。見つからなければ数回リトライしてください。
-その後、チャンネル $SLACK_CHANNEL に以下の <message> の内容をそのまま投稿してください。
-投稿以外のツールは一切使わず、投稿できたら SENT、失敗したら FAILED: 理由 とだけ出力して終了してください。
-<message>
-$message
-</message>
-EOF
-}
-
-# macOS 通知: Slack MCP は「自分として」投稿するため Slack 通知が鳴らない。気づく手段はこちら。
-# terminal-notifier を専用アプリ名義で発火させ、システム設定 > 通知 > terminal-notifier を
-# 「通知方法: 通知パネル(Alert)」にしておくと、手動で閉じるまで消えずに残る。
-notify_macos() {
-  local title="$1" body="$2"
-  if command -v terminal-notifier >/dev/null 2>&1; then
-    terminal-notifier -title "$title" -message "$body" -sound Glass \
-      -group "auto-review-prs" 2>>"$LOG_FILE"
+  if [ ! -s "$WEBHOOK_FILE" ]; then
+    log "Slack 通知スキップ: Webhook URL ($WEBHOOK_FILE) が未設定"
+    return 1
+  fi
+  local url payload code
+  url=$(cat "$WEBHOOK_FILE")
+  # JSON 文字列に安全に埋め込む (改行・引用符・バックスラッシュを jq でエスケープ)
+  payload=$(jq -n --arg t "$message" '{text: $t}')
+  code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 \
+    -X POST -H 'Content-type: application/json' --data "$payload" "$url" 2>>"$LOG_FILE")
+  if [ "$code" = "200" ]; then
+    log "Slack Webhook 送信成功 (HTTP $code)"
+    return 0
   else
-    # フォールバック: terminal-notifier 未導入時 (Alert 化は効かない)
-    osascript -e "display notification \"${body//\"/\\\"}\" with title \"${title//\"/\\\"}\" sound name \"Glass\"" 2>>"$LOG_FILE"
+    log "Slack Webhook 送信失敗 (HTTP ${code:-no-response})"
+    return 1
   fi
 }
 
@@ -136,15 +132,17 @@ EOF
       fi
     fi
 
+    # 注: Slack Incoming Webhook は mrkdwn 記法 (<url|text>)。markdown の [text](url) は解釈されない。
+    # cursor:// は http/https でないため Slack 上でリンク化されないので、レポートはパス併記にする。
     if [ -f "$report_file" ]; then
       if ! grep -qxF "${repo}#${num}" "$NOTIFIED_FILE"; then
         completed+=("✅ ${repo} #${num} ${title}
-[PR を開く](${url}) / [レポートを Cursor で開く](cursor://file${report_file})")
+<${url}|PR を開く>  (レポート: ${report_file})")
         echo "${repo}#${num}" >> "$NOTIFIED_FILE"
       fi
     else
       reminders+=("⏳ ${repo} #${num} ${title}
-[PR を開く](${url})")
+<${url}|PR を開く>")
     fi
   done <<< "$prs"
 
@@ -180,9 +178,8 @@ if [ ${#completed[@]} -gt 0 ] || [ ${#reminders[@]} -gt 0 ]; then
     msg+=$'\n\n'"【未レビュー (レポート未生成)】"
     for r in "${reminders[@]}"; do msg+=$'\n'"$r"; done
   fi
+  # 通知の成否は notify_slack 内でログに残る (旧実装は失敗を握りつぶしていた)
   notify_slack "$msg"
-  notify_macos "Auto PR Review" "レビュー完了 ${#completed[@]} 件 / 未レビュー ${#reminders[@]} 件。詳細は #times-uesho-private へ"
-  log "Slack + macOS 通知送信"
 fi
 
 log "=== Auto Review end ==="
