@@ -15,6 +15,7 @@ task = "latest"
 terraform = "1.8.5"
 uv = "latest"
 yarn = "latest"
+"npm:playwright" = "latest"
 
 [tasks.switch]
 description = "nix-darwin の設定を適用する (arm-mac / intel-mac を自動判別)"
