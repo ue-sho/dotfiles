@@ -24,11 +24,15 @@
     wget
     jq
     fd
+    fzf
+    ripgrep
+    httpie
     htop
     gh
     yq
     tree
     bat
+    delta # git の pager / diff 表示を強化 (config/git/config で有効化)
     git-lfs
     direnv
     yazi

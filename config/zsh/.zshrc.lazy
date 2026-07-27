@@ -54,6 +54,22 @@ eval "$(mise activate zsh)"
 # direnv
 eval "$(direnv hook zsh)"
 
+# fzf: キーバインド(Ctrl-R 履歴 / Ctrl-T ファイル / Alt-C cd)と補完を有効化
+if (( ${+commands[fzf]} )); then
+    eval "$(fzf --zsh)"
+    # 候補列挙は fd を使う(hidden 込み、.git は除外)
+    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+    # git ブランチを fzf で選んで switch。
+    # --format で "* " 印や先頭空白を除去し、未選択(Esc)時は何もしない。
+    gsw() {
+        local branch
+        branch=$(git branch --format='%(refname:short)' | fzf) || return
+        [ -n "$branch" ] && git switch "$branch"
+    }
+fi
+
 # yazi: 終了時にいたディレクトリへ cd する
 function y() {
     local tmp cwd
