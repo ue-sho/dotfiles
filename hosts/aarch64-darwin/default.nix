@@ -11,7 +11,6 @@ let
 
   # {{{ Homebrew taps
   taps = [
-    "coderabbitai/tap" # git-gtr
   ];
   # }}}
 
@@ -24,9 +23,6 @@ let
     "readline"
 
     "typst"
-
-    # git worktree 管理 (git gtr new の postCreate で cmux-setup を起動する)
-    "coderabbitai/tap/git-gtr"
   ];
   # }}}
 

@@ -18,11 +18,3 @@
 
 [includeIf "gitdir:~/develop/"]
     path = conf.d/local.conf
-
-# git gtr new <branch> で worktree を作ると cmux の 4 ペイン
-# ワークスペース (yazi / terminal / difit / claude) が自動で立ち上がる
-[gtr "hook"]
-    postCreate = cmux-setup
-
-[gtr "copy"]
-    include = .envrc

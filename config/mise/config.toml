@@ -34,10 +34,6 @@ cd ~/dotfiles && sudo nix run github:LnL7/nix-darwin -- switch --flake ".#$host"
 description = "未コミットの全差分 (未追跡ファイル含む) をブラウザでレビューする"
 run = "difit . --include-untracked"
 
-[tasks.difit-serve]
-description = "difit をブラウザ自動起動なしで立ち上げる (cmux-setup が右上ペインで使用。引数例: --port 4966)"
-run = "difit . --include-untracked --no-open --keep-alive"
-
 [tasks.aws-sso-login]
 alias = "al"
 description = "SSOでログインして、現在のセッションに認証情報を設定する"
