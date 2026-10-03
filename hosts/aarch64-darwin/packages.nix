@@ -27,5 +27,4 @@ with pkgs; [
   # Additional Tools
   awscli2
   saml2aws
-  mise
 ]
