@@ -24,16 +24,9 @@ inputs.home-manager.lib.homeManagerConfiguration {
       home.packages = with pkgs; [
         # Basic Tools installed by modules/home-manager/default.nix
 
-        # Programming Languages & SDKs
-        python3
-        uv
         kotlin
-        go
-
-        # Database Related
         postgresql_17
         flyway
-        mysql
 
         # Container Tools
         kubectl
@@ -45,7 +38,6 @@ inputs.home-manager.lib.homeManagerConfiguration {
         kubeseal
 
         # Additional Tools
-        terraform
         graphviz
         shellcheck
         peco
