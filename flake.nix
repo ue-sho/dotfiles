@@ -4,13 +4,23 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs 26.11+ dropped x86_64-darwin; pin intel-mac to the last Darwin branch.
+    nixpkgs-intel.url = "github:NixOS/nixpkgs/nixpkgs-26.05-darwin";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-intel = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-intel";
+    };
     nix-darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-darwin-intel = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs-intel";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
@@ -34,7 +44,13 @@
       flake = {
         darwinConfigurations = {
           # Intel Mac
-          "intel-mac" = import ./hosts/x86_64-darwin { inherit inputs; };
+          "intel-mac" = import ./hosts/x86_64-darwin {
+            inputs = inputs // {
+              nixpkgs = inputs.nixpkgs-intel;
+              nix-darwin = inputs.nix-darwin-intel;
+              home-manager = inputs.home-manager-intel;
+            };
+          };
 
           # Apple Silicon Mac
           "arm-mac" = import ./hosts/aarch64-darwin { inherit inputs; };
