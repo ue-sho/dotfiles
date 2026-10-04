@@ -27,6 +27,7 @@ let
     "meetingbar"
     "raycast"
     "cursor"
+    "cmux"
   ];
   # }}}
 in
