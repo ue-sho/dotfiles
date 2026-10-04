@@ -64,6 +64,12 @@ nix run --experimental-features 'nix-command flakes' .#home-manager -- switch --
 nix flake update
 ```
 
+## Delete unused Nix store
+
+```bash
+nix-collect-garbage -d
+```
+
 ## References
 
 - [Nix Flakes Documentation](https://nixos.wiki/wiki/Flakes)
