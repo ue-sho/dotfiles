@@ -11,29 +11,21 @@ let
 
   # {{{ Homebrew casks
   casks = [
-    "google-chrome"
     "discord"
     "visual-studio-code"
-    "docker-desktop"
     "slack"
     "iterm2"
     "rectangle"
     "aws-vault-binary"
-    "bitwarden"
     "font-jetbrains-mono-nerd-font"
     "font-sauce-code-pro-nerd-font"
     "google-japanese-ime"
     "karabiner-elements"
-    "warp"
-    "wireshark-app"
     "gcloud-cli"
     "obsidian"
-    "intellij-idea"
-    "datagrip"
+    "rancher"
     "meetingbar"
     "raycast"
-    "notion"
-    "postman"
     "cursor"
   ];
   # }}}
