@@ -14,7 +14,7 @@ Three machines, two shapes: macOS hosts (`arm-mac`, `intel-mac`) use **nix-darwi
 
 Editing files under `config/` (zsh, git, vim, mise, gh) takes effect **immediately** — they're symlinked into `$XDG_CONFIG_HOME` via `mkOutOfStoreSymlink`. No rebuild needed.
 
-Anything in `*.nix` (packages, casks, brews, system defaults) requires `nix run github:LnL7/nix-darwin -- switch --flake .#<host>` to apply.
+Anything in `*.nix` (packages, casks, brews, system defaults) requires `mise run switch` (wraps `sudo nix run --inputs-from . <nix-darwin input> -- switch --flake .#<host>`) to apply. Don't use `github:LnL7/nix-darwin` directly — it ignores `flake.lock` and hits GitHub API rate limits.
 
 If the user reports "I edited X but nothing changed," the question is which side of this line X is on.
 

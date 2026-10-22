@@ -24,10 +24,11 @@ run = """
 set -euo pipefail
 [ "$(uname)" = "Darwin" ] || { echo "Darwin 専用タスク" >&2; exit 1; }
 case "$(uname -m)" in
-  arm64) host=arm-mac ;;
-  x86_64) host=intel-mac ;;
+  arm64) host=arm-mac; input=nix-darwin ;;
+  x86_64) host=intel-mac; input=nix-darwin-intel ;;
 esac
-cd ~/dotfiles && sudo nix run github:LnL7/nix-darwin -- switch --flake ".#$host"
+# flake.lock で固定した nix-darwin を使う (github:... 直指定は毎回 GitHub API を叩きレート制限に当たる)
+cd ~/dotfiles && sudo nix run --inputs-from . "$input" -- switch --flake ".#$host"
 """
 
 [tasks.difit]

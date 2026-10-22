@@ -44,13 +44,15 @@ Before diving into Nix, you'll need to prepare your system.
 
 For Intel Mac:
 ```bash
-sudo nix run github:LnL7/nix-darwin -- switch --flake .#intel-mac
+sudo nix run --inputs-from . nix-darwin-intel -- switch --flake .#intel-mac
 ```
 
 For Apple Silicon Mac:
 ```bash
-sudo nix run github:LnL7/nix-darwin -- switch --flake .#arm-mac
+sudo nix run --inputs-from . nix-darwin -- switch --flake .#arm-mac
 ```
+
+After the first install, `mise run switch` does the same (host auto-detected).
 
 #### Linux or Standalone home-manager (macOS)
 
