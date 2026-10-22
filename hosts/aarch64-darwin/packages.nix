@@ -12,7 +12,8 @@ with pkgs; [
   flyway
 
   # Container Tools
-  kubectl
+  # minikube も bin/kubectl (minikube 経由のシム) を同梱するため、本物の kubectl を優先させる
+  (lib.hiPrio kubectl)
   minikube
   kubernetes-helm
   kustomize
