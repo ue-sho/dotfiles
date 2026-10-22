@@ -5,6 +5,8 @@
   nix.enable = false;
 
   nixpkgs.hostPlatform = system;
+  # home-manager は useGlobalPkgs でこの pkgs を使うので、darwin ではここで overlay を当てる
+  nixpkgs.overlays = [ (import ../../overlays/mise.nix) ];
   users.users.${username} = {
     home = "/Users/${username}";
     shell = pkgs.zsh;

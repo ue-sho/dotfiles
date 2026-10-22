@@ -6,6 +6,7 @@ let
     config = {
       allowUnfree = true;
     };
+    overlays = [ (import ../../overlays/mise.nix) ];
   };
 in
 
