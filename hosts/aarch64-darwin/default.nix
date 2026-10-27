@@ -38,6 +38,7 @@ let
     "raycast"
     "notion"
     "box-drive"
+    "google-drive"
     "karabiner-elements"
     "postman"
     "cursor"
