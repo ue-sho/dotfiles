@@ -37,6 +37,7 @@
     direnv
     yazi
     mise
+    ansible
   ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
     terminal-notifier # auto-review-prs.sh の macOS 通知 (Alert スタイル化のため専用アプリ名義で発火)
   ];
